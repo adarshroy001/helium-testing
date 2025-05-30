@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, ShoppingCart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Logo from '../ui/Logo'
-import { Button } from '../ui/button'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +26,7 @@ const Navbar = () => {
     >
       <div className="bg-[#033129]/30 backdrop-blur-lg rounded-md  shadow-2xl max-w-4xl mx-auto">
         <div className="px-6 lg:px-8 py-3">
-            <nav className="flex items-center justify-between space-x-8">
+            <nav className="flex items-center justify-between space-x-0  sm:space-x-8">
               <Logo />          
               <NavLink href="#products">Why Helium</NavLink>
               <NavLink href="#investors">Shop</NavLink>
