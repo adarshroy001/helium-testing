@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${gatwick.variable} ${glacial.variable} ${garet.variable}`}>
-      <body className="font-garet antialiased">
+      <body className="font-garet antialiased ">
         <div>
           <Navbar />
           {children}
