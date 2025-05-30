@@ -20,22 +20,6 @@ const HeroSection = () => {
     return () => clearTimeout(timer)
   }, [])
 
-  // Split text into individual letters for animation with infinite loop
-  const animateText = (text: string, baseDelay: number = 0) => {
-    return text.split('').map((char: string, index: number) => (
-      <span
-        key={index}
-        className="inline-block animate-pulse"
-        style={{
-          animation: `letterFade 3s ease-in-out infinite`,
-          animationDelay: `${baseDelay + index * 100}ms`
-        }}
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ))
-  }
-
   return (
     <section className="relative w-full max-h-screen h-screen overflow-hidden bg-[#033129]">
       {/* Video Background - Desktop */}
