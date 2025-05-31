@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Layout/Nav";
 
 import localFont from 'next/font/local';
+import Footer from "@/components/Layout/Footer";
 
 const gatwick = localFont({
   src: '../fonts/gatwick/Gatwick-Bold.woff2',
@@ -35,6 +36,7 @@ export default function RootLayout({
         <div>
           <Navbar />
           {children}
+          <Footer/>
         </div>
       </body>
     </html>
