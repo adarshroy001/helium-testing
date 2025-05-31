@@ -31,7 +31,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 
   useEffect(() => {
     addAnimation();
-    
+
     // Add event delegation for hover effects
     const handleMouseOver = (e: MouseEvent) => {
       const card = (e.target as HTMLElement).closest('.testimonial-card');
@@ -39,7 +39,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
         handleCardHover(true);
       }
     };
-    
+
     const handleMouseOut = (e: MouseEvent) => {
       const card = (e.target as HTMLElement).closest('.testimonial-card');
       if (card) {
@@ -47,18 +47,18 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
         const rect = card.getBoundingClientRect();
         const x = e.clientX;
         const y = e.clientY;
-        
+
         if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
           handleCardHover(false);
         }
       }
     };
-    
+
     if (containerRef.current) {
       containerRef.current.addEventListener('mouseover', handleMouseOver);
       containerRef.current.addEventListener('mouseout', handleMouseOut);
     }
-    
+
     return () => {
       if (containerRef.current) {
         containerRef.current.removeEventListener('mouseover', handleMouseOver);
@@ -73,7 +73,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 
       scrollerContent.forEach((item, index) => {
         const duplicatedItem = item.cloneNode(true) as HTMLElement;
-        
+
         if (scrollerRef.current) {
           scrollerRef.current.appendChild(duplicatedItem);
         }
@@ -116,7 +116,6 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
   const handleCardHover = (isHovering: boolean) => {
     if (pauseOnHover) {
       setIsPaused(isHovering);
-      
       // Also directly set the animation play state for immediate effect
       if (scrollerRef.current) {
         scrollerRef.current.style.animationPlayState = isHovering ? 'paused' : 'running';
@@ -132,8 +131,8 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
         className
       )}
       style={{
-        maskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent)'
+        maskImage: 'linear-gradient(to right, transparent, white 10%, white 90%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, white 10%, white 90%, transparent)'
       }}
     >
       <ul
@@ -158,40 +157,40 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
           >
             {/* Animated border */}
             <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                 style={{
-                   background: 'linear-gradient(45deg, #f3af66, #f3942c, #f3af66)',
-                   backgroundSize: '200% 200%',
-                   animation: 'gradient-shift 3s ease infinite',
-                   padding: '2px'
-                 }}>
-              <div className="w-full h-full rounded-3xl" 
-                   style={{
-                     background: 'linear-gradient(135deg, rgba(243, 175, 102, 0.95) 0%, rgba(243, 148, 44, 0.9) 100%)'
-                   }}></div>
+              style={{
+                background: 'linear-gradient(45deg, #f3af66, #f3942c, #f3af66)',
+                backgroundSize: '200% 200%',
+                animation: 'gradient-shift 3s ease infinite',
+                padding: '2px'
+              }}>
+              <div className="w-full h-full rounded-3xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(243, 175, 102, 0.95) 0%, rgba(243, 148, 44, 0.9) 100%)'
+                }}></div>
             </div>
-            
+
             <blockquote className="relative z-10">
               {/* Quote icon */}
               <div className="mb-4">
                 <svg className="w-8 h-8 text-white/80 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
                 </svg>
               </div>
-              
+
               <span className="relative z-20 text-base leading-relaxed font-medium text-white/95 group-hover:text-white transition-colors duration-300 block mb-6">
                 "{item.quote}"
               </span>
-              
+
               <div className="relative z-20 flex flex-row items-center">
                 {/* Avatar placeholder */}
                 <div className="w-12 h-12 rounded-full mr-4 flex items-center justify-center text-white font-bold text-lg"
-                     style={{
-                       background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)',
-                       border: '2px solid rgba(255, 255, 255, 0.3)'
-                     }}>
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)',
+                    border: '2px solid rgba(255, 255, 255, 0.3)'
+                  }}>
                   {item.name.split(' ').map(n => n[0]).join('')}
                 </div>
-                
+
                 <span className="flex flex-col gap-1">
                   <span className="text-base font-semibold text-white group-hover:text-white transition-colors duration-300">
                     {item.name}
@@ -205,7 +204,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
           </li>
         ))}
       </ul>
-      
+
       <style jsx>{`
         @keyframes scroll {
           to {
@@ -262,27 +261,25 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 w-full bg-gradient-to-br from-[#033129] via-[#044832] to-[#033129] min-h-screen relative overflow-hidden">
+    <section className="py-20 w-full bg-[#033129] relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[#f3af66] blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-[#f3942c] blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 rounded-full bg-[#f3af66] blur-3xl"></div>
       </div>
-      
-      <div className="relative z-10">
-        <div className="text-center mb-16">
-          <h2 className='text-white text-4xl sm:text-6xl font-bold mb-4'>
-            What People Are <span className="text-[#f3942c] relative">
-              Saying
-              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#f3942c] to-[#f3af66] rounded-full"></div>
-            </span>
+
+      <div className="relative z-10"> 
+        <div className="text-center mb-16 w-[90%] mx-auto">
+          <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
+            What People Are 
+              <span className="text-[#f3942c] border-b-2 border-[#f3942c] pb-1"> Saying</span>
           </h2>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg max-w-2xl mx-auto  w-[90%]">
             Real experiences from customers who've transformed their homes with Helium
           </p>
         </div>
-        
+
         <InfiniteMovingCards
           items={testimonials}
           direction="left"

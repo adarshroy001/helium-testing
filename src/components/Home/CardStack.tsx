@@ -25,8 +25,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Not just cool air — clean air.',
       description:
         'Save cost, space, and complexity with built-in purification. Perfect for health-conscious urban homes like Delhi NCR & Bengaluru.',
-      imageUrl: '/assets/bg/1.jpg',
-      height: '80vh'
+      imageUrl: '/assets/bg/1.jpg'
     },
     {
       id: 'panel-2',
@@ -34,8 +33,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Helium ACs protect themselves.',
       description:
         'Detect gas leaks before they become breakdowns. No surprise service calls — just peace of mind.',
-      imageUrl: '/assets/bg/2.jpg',
-      height: '80vh'
+      imageUrl: '/assets/bg/2.jpg'
     },
     {
       id: 'panel-3',
@@ -43,8 +41,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Your AC, your style.',
       description:
         'Match your AC to your vibe. Make it yours with design-forward front panels — a first in the industry.',
-      imageUrl: '/assets/bg/3.png',
-      height: '80vh'
+      imageUrl: '/assets/bg/3.png'
     },
     {
       id: 'panel-4',
@@ -52,8 +49,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'The smartest AC you have ever owned.',
       description:
         'Control from anywhere, get smart alerts, and unlock advanced diagnostics — all from your phone.',
-      imageUrl: '/assets/bg/4.JPG',
-      height: '80vh'
+      imageUrl: '/assets/bg/4.JPG'
     },
     {
       id: 'panel-5',
@@ -61,8 +57,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Try Helium for ₹8,000.',
       description:
         'Affordable like a subscription. Pay ₹8K upfront — commit fully only if you love it. No risk, just cool comfort.',
-      imageUrl: '/assets/bg/5.jpg',
-      height: '80vh'
+      imageUrl: '/assets/bg/5.jpg'
     }
   ];
 
@@ -223,16 +218,24 @@ const ImageStackedPinning: React.FC = () => {
   }, []);
 
   return (
-    <section className='w-full bg-[#033129] pt-6'>
-      <p className='text-white text-4xl text-center sm:text-6xl font-bold w-fit mx-auto border-b-2 border-white'>Innovation at its <span className='text-[#f3942c]'>finest</span></p>
+    <section className='w-full bg-[#033129] pt-6 sm:pt-12'>
+      {/* <p className='text-white text-4xl text-center sm:text-6xl font-bold w-fit mx-auto border-b-2 border-white'>Innovation at its <span className='text-[#f3942c]'>finest</span></p> */}
+      <div className="text-center mb-16 w-[90%] mx-auto">
+          <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
+            Innovation at its
+              <span className="text-[#f3942c] border-b-2 border-[#f3942c] pb-1"> finest</span>
+          </h2>
+          <p className="text-white/70 text-lg mx-auto  w-[90%] tracking-tight">
+            Everyday moments, reimagined with smart, app-first cooling.
+          </p>
+        </div>
       <div ref={containerRef} className="relative w-4/5 mx-auto my-20">
         {/* Image Panels */}
         {imagePanels.map((panel, index) => (
           <section
             key={panel.id}
-            className="image-panel relative overflow-hidden rounded-2xl"
+            className="image-panel relative overflow-hidden rounded-2xl h-[60vh] lg:h-[80vh] mb-8 lg:mb-12"
             style={{ 
-              height: panel.height,
               zIndex:  index + 10// Higher z-index for later panels
             }}
           >
