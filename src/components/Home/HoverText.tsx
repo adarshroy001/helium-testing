@@ -11,7 +11,7 @@ const HoverText = () => {
     // Responsive chunk size
     const updateChunkSize = () => {
       const width = window.innerWidth;
-      setChunkSize(width <= 768 ? 3 : 4);
+      setChunkSize(width <= 768 ? 4 : 4);
     };
 
     updateChunkSize(); // set on load
@@ -66,29 +66,65 @@ const HoverText = () => {
   };
 
   const paragraphs = [
-    "Helium is reimagining air conditioning for a new India smarter, sleeker, and more intuitive.",
-    "We build IoT-enabled, app-controlled ACs that offer personalized cooling, stunning design, and seamless service.",
-    "Born from a vision to blend cutting-edge technology with everyday comfort, Helium delivers a futuristic experience tailored to modern lifestyles.",
-    "Say goodbye to outdated appliances and hello to ACs that think, learn, and adapt to you."
+    "air conditioning was boring",
+    "clunky boxes on walls",
+    "noisy, dumb, outdated",
+    "built with zero soul",
+
+    "helium is born different",
+    "designed to feel magical",
+    "crafted to look iconic",
+    "engineered to be smart",
+
+    "it cools with care",
+    "learns how you live",
+    "adapts to your day",
+    "runs only when needed",
+
+    "connects with your phone",
+    "understands your patterns",
+    "serves you silently",
+    "saves more every month",
+
+    "goodbye remote confusion",
+    "hello clean control interface",
+    "no more ugly grills",
+    "just a sleek finish",
+
+    "we don’t build ACs",
+    "we build future air",
+    "personal, adaptive, intelligent",
+    "a better standard, finally",
+
+    "helium is coming soon",
+    "and it changes everything"
   ];
 
   const chunks = paragraphs.flatMap(para => chunkWords(para, chunkSize));
 
   return (
-    <div className="min-h-fit w-full">
-      <section 
-        className="min-h-screen py-20 flex items-center"
+    <div className="min-h-fit w-full bg-[#033129]">
+
+      <section
+        className="min-h-screen  mx-auto w-[80%] sm:w-fit  sm:pl-12 pr-0 mt-16 sm:mt-24 mb-16"
         style={{ backgroundColor: '#033129' }}
       >
-        <div className="max-w-6xl mx-auto px-6 w-full">
+        {/* header */}
+        <div className="mb-12 sm:mb-16 mx-auto">
+          <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
+            NOT EVERY AC IS <span className="text-[#f3942c] border-b-2 border-[#f3942c] tracking-tight">HELIUM</span>
+          </h2>
+        </div>
+        {/* text */}
+        <div className="max-w-6xl mx-auto w-full">
           {chunks.map((chunk, index) => (
             <div
               key={index}
               ref={(el) => addToRefs(el, index)}
-              className="text-center mb-8"
+              className=" mb-2"
             >
               <p
-                className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight transition-colors duration-500 ease-out"
+                className=" text-left text-2xl md:text-5xl lg:text-6xl font-bold leading-tight transition-colors duration-500 ease-out"
                 style={{
                   color: visibleElements.has(index) ? '#ffffff' : '#4a5568',
                   textShadow: visibleElements.has(index)

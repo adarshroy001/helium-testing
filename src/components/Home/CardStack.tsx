@@ -107,7 +107,7 @@ const ImageStackedPinning: React.FC = () => {
       panelElements.forEach((panel: HTMLElement, index: number) => {
         ScrollTrigger.create({
           trigger: panel,
-          start: () => panel.offsetHeight < window.innerHeight ? 'top top' : 'bottom bottom',
+          start: () => panel.offsetHeight < window.innerHeight ? 'top top+=80' : 'bottom bottom',
           pin: true,
           pinSpacing: false,
           end: () => {
@@ -126,19 +126,19 @@ const ImageStackedPinning: React.FC = () => {
         const img = panel.querySelector('.panel-image') as HTMLElement;
         if (img) {
           // Parallax effect
-          gsap.fromTo(img,
-            { yPercent: -20 },
-            {
-              yPercent: 20,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: panel,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-              }
-            }
-          );
+          // gsap.fromTo(img,
+          //   { yPercent: -20 },
+          //   {
+          //     yPercent: 20,
+          //     ease: 'none',
+          //     scrollTrigger: {
+          //       trigger: panel,
+          //       start: 'top bottom',
+          //       end: 'bottom top',
+          //       scrub: true
+          //     }
+          //   }
+          // );
 
           // Scale and fade out effect when next panel approaches
           if (index < panelElements.length - 1) {
@@ -146,13 +146,13 @@ const ImageStackedPinning: React.FC = () => {
 
             // Create a longer, smoother animation trigger
             const triggerElement = nextPanel;
-            
+
             // Animate the entire panel to disappear smoothly
             gsap.fromTo(panel,
               {
                 scale: 1,
                 opacity: 1,
-                transformOrigin: 'center center'
+                transformOrigin: 'top top+=100'
               },
               {
                 scale: 0.85, // Less aggressive scaling
@@ -160,9 +160,9 @@ const ImageStackedPinning: React.FC = () => {
                 ease: 'power2.inOut', // Smoother easing
                 scrollTrigger: {
                   trigger: triggerElement,
-                  start: 'top bottom-=100px', // Start earlier
-                  end: 'center center', // End later for longer animation
-                  scrub: 1.5, // Slower scrub for smoother animation
+                  start: 'top bottom-=200px', // Start earlier
+                  end: 'top top+=100', // End later for longer animation
+                  scrub: 0, // Slower scrub for smoother animation
                   // Remove the visibility callbacks to prevent instant hiding
                 }
               }
@@ -191,9 +191,9 @@ const ImageStackedPinning: React.FC = () => {
                   opacity: 0,
                   scrollTrigger: {
                     trigger: triggerElement,
-                    start: 'top bottom-=150px',
-                    end: 'top center+100px',
-                    scrub: 1
+                    start: 'top bottom-=200px', // Start earlier
+                    end: 'top top+=100', // End later for longer animation
+                    scrub: 0
                   }
                 }
               );
@@ -221,22 +221,22 @@ const ImageStackedPinning: React.FC = () => {
     <section className='w-full bg-[#033129] pt-6 sm:pt-12'>
       {/* <p className='text-white text-4xl text-center sm:text-6xl font-bold w-fit mx-auto border-b-2 border-white'>Innovation at its <span className='text-[#f3942c]'>finest</span></p> */}
       <div className="text-center mb-16 w-[90%] mx-auto">
-          <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
-            Innovation at its
-              <span className="text-[#f3942c] border-b-2 border-[#f3942c] pb-1"> finest</span>
-          </h2>
-          <p className="text-white/70 text-lg mx-auto  w-[90%] tracking-tight">
-            Everyday moments, reimagined with smart, app-first cooling.
-          </p>
-        </div>
+        <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
+          Innovation at its
+          <span className="text-[#f3942c] border-b-2 border-[#f3942c] pb-1"> finest</span>
+        </h2>
+        <p className="text-white/70 text-lg mx-auto  w-[90%] tracking-tight">
+          Everyday moments, reimagined with smart, app-first cooling.
+        </p>
+      </div>
       <div ref={containerRef} className="relative w-4/5 mx-auto my-20">
         {/* Image Panels */}
         {imagePanels.map((panel, index) => (
           <section
             key={panel.id}
             className="image-panel relative overflow-hidden rounded-2xl h-[60vh] lg:h-[80vh] mb-8 lg:mb-12"
-            style={{ 
-              zIndex:  index + 10// Higher z-index for later panels
+            style={{
+              zIndex: index + 10// Higher z-index for later panels
             }}
           >
             {/* Background Image with Parallax */}

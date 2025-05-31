@@ -8,27 +8,27 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-[#033129] text-[#e4e8e2] py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#021F1B] text-[#F1F1F1] py-16 border-t border-[#f3942c]">
+      <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6 font-raleway">Helium</h3>
-            <p className="text-[#d9d9d9] mb-6">
+            <h3 className="text-2xl font-bold mb-4 font-raleway text-[#f3942c]">Helium</h3>
+            <p className="text-[#9BAEA0] mb-6 leading-relaxed">
               Revolutionizing comfort with smart, aesthetic air conditioning solutions for modern homes.
             </p>
-            <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="hover:text-[#f3942c]">
+            <div className="flex space-x-3">
+              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
                 <Facebook className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-[#f3942c]">
+              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
                 <Twitter className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-[#f3942c]">
+              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
                 <Instagram className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-[#f3942c]">
+              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
                 <Youtube className="h-5 w-5" />
               </Button>
             </div>
@@ -36,25 +36,25 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6 font-raleway">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-6 font-raleway text-[#F1F1F1]">Quick Links</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="#products" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
+                <Link href="#products" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
                   Our Products
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
+                <Link href="#about" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#support" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
+                <Link href="#support" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
                   Support
                 </Link>
               </li>
               <li>
-                <Link href="#blog" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
+                <Link href="#blog" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
                   Blog
                 </Link>
               </li>
@@ -63,66 +63,36 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6 font-raleway">Contact</h3>
+            <h3 className="text-xl font-bold mb-6 font-raleway text-[#F1F1F1]">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-[#f3942c]" />
-                <span className="text-[#d9d9d9]">support@helium.in</span>
+                <Mail className="h-5 w-5 text-[#A9E5C2]" />
+                <span className="text-[#9BAEA0]">support@helium.in</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-[#f3942c]" />
-                <span className="text-[#d9d9d9]">1800-123-4567</span>
+                <Phone className="h-5 w-5 text-[#A9E5C2]" />
+                <span className="text-[#9BAEA0]">1800-123-4567</span>
               </li>
               <li className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-[#f3942c]" />
-                <span className="text-[#d9d9d9]">Bangalore, India</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 font-raleway">Legal</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link href="/privacy" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/warranty" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
-                  Warranty Information
-                </Link>
-              </li>
-              <li>
-                <Link href="/shipping" className="text-[#d9d9d9] hover:text-[#f3942c] transition-colors">
-                  Shipping Policy
-                </Link>
+                <MapPin className="h-5 w-5 text-[#A9E5C2]" />
+                <span className="text-[#9BAEA0]">Bangalore, India</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-[#e4e8e2]/10">
+        <div className="mt-16 pt-8 border-t border-[#145546]/50">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-[#d9d9d9] text-sm mb-4 md:mb-0">
+            <p className="text-[#CFCFCF] text-sm mb-4 md:mb-0">
               © {currentYear} Helium. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link href="/sitemap" className="text-[#d9d9d9] text-sm hover:text-[#f3942c] transition-colors">
-                Sitemap
+              <Link href="/privacy" className="text-[#9BAEA0] text-sm hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
+                Privacy Policy
               </Link>
-              <Link href="/accessibility" className="text-[#d9d9d9] text-sm hover:text-[#f3942c] transition-colors">
-                Accessibility
-              </Link>
-              <Link href="/cookies" className="text-[#d9d9d9] text-sm hover:text-[#f3942c] transition-colors">
-                Cookie Policy
+              <Link href="/terms" className="text-[#9BAEA0] text-sm hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
+                Terms of Service
               </Link>
             </div>
           </div>
