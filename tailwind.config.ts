@@ -12,8 +12,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -64,34 +63,33 @@ const config: Config = {
       },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+        scroll: {
           to: {
-            height: '0',
+            transform: 'translate(calc(-50% - 0.5rem))',
           },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
       },
       fontFamily: {
         logo: ["var(--font-gatwick)", ...defaultTheme.fontFamily.sans],
         heading: ["var(--font-glacial)", ...defaultTheme.fontFamily.sans],
         body: ["var(--font-garet)", ...defaultTheme.fontFamily.sans],
-        garet: ["var(--font-garet)", ...defaultTheme.fontFamily.sans], // optional alias
+        garet: ["var(--font-garet)", ...defaultTheme.fontFamily.sans],
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
 };
+
 export default config;

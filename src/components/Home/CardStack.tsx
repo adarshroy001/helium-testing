@@ -121,7 +121,7 @@ const ImageStackedPinning: React.FC = () => {
               const nextPanel = panelElements[index + 1];
               return `+=${nextPanel.offsetTop - panel.offsetTop}`;
             }
-            return '+=100%';
+            return '+=0%';
           }
         });
       });
@@ -223,8 +223,8 @@ const ImageStackedPinning: React.FC = () => {
   }, []);
 
   return (
-    <section className='w-full bg-[#033129]'>
-      <p className='text-[#f3942c] text-4xl text-center sm:text-6xl font-bold'>Innovation at its finest</p>
+    <section className='w-full bg-[#033129] pt-6'>
+      <p className='text-white text-4xl text-center sm:text-6xl font-bold w-fit mx-auto border-b-2 border-white'>Innovation at its <span className='text-[#f3942c]'>finest</span></p>
       <div ref={containerRef} className="relative w-4/5 mx-auto my-20">
         {/* Image Panels */}
         {imagePanels.map((panel, index) => (
