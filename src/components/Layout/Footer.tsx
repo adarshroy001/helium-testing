@@ -16,7 +16,17 @@ const Footer: React.FC = () => {
   const [email, setEmail] = useState("")
 
   return (
-    <footer className="bg-gradient-to-b from-[#1a1a1a] to-[#121212] text-gray-300 py-12 px-4 md:px-8 lg:px-12">
+    <footer className=" text-gray-300 py-12 px-4 md:px-8 lg:px-12"
+      style={{
+        backgroundImage: `url('/assets/bg/footersectionBg.jpg')`,
+        backgroundSize: 'cover',              // Makes sure the image covers the whole area
+        backgroundPosition: 'top center',     // Keeps the spotlight area visible on mobile
+        backgroundRepeat: 'no-repeat',        // Prevents tiling
+        backgroundAttachment: 'scroll',       // Avoids parallax issues on mobile
+        backgroundColor: 'rgba(0, 0, 0, 0.9)', // Optional overlay for contrast
+        backgroundBlendMode: 'overlay',       // Darkens image for better text visibility
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Hero Section with Image */}
@@ -24,7 +34,7 @@ const Footer: React.FC = () => {
             <div
               className="relative h-[400px] md:h-full w-full bg-cover bg-center rounded-lg overflow-hidden"
               style={{
-                backgroundImage: `url('/assets/footerimg.png')`,
+                backgroundImage: `url('/assets/bg/ManUAC.png')`,
                 backgroundPosition: "center",
               }}
             >
@@ -87,7 +97,7 @@ const Footer: React.FC = () => {
                 <ul className="space-y-3">
                   <li>
                     <a href="#" className="hover:text-white transition-colors inline-flex items-center">
-                      Help Center 
+                      Help Center
                     </a>
                   </li>
                   <li>
@@ -97,12 +107,12 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a href="#" className="hover:text-white transition-colors">
-                    App Features
+                      App Features
                     </a>
                   </li>
                   <li>
                     <a href="#" className="hover:text-white transition-colors inline-flex items-center">
-                      Oura on the Web 
+                      Oura on the Web
                     </a>
                   </li>
                   <li>
