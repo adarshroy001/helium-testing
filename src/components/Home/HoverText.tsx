@@ -103,20 +103,20 @@ const HoverText = () => {
   const chunks = paragraphs.flatMap(para => chunkWords(para, chunkSize));
 
   return (
-    <div className="min-h-fit w-full bg-[#033129]">
+    <div className="min-h-fit w-full bg-[#1B1B1B]">
 
       <section
-        className="min-h-screen  mx-auto w-[80%] sm:w-fit  sm:pl-12 pr-0 mt-16 sm:mt-24 mb-16"
-        style={{ backgroundColor: '#033129' }}
+        className="min-h-screen sm:mx-auto sm:w-[70%] lg:mx-auto lg:w-[60%] sm:pl-12 pr-0 mt-16 sm:mt-24 mb-16 "
+        // style={{ backgroundColor: '#033129' }}
       >
         {/* header */}
         <div className="mb-12 sm:mb-16 mx-auto">
-          <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
-            NOT EVERY AC IS <span className="text-[#f3942c] border-b-2 border-[#f3942c] tracking-tight">HELIUM</span>
+          <h2 className='text-white text-2xl font-heading font-semibold sm:text-5xl mb-4 tracking-tighter mx-auto w-[90%] sm:w-full'>
+            NOT EVERY AC IS <span className="text-[#f3942c] border-b-2 border-[#f3942c] tracking-tighter">HELIUM</span>
           </h2>
         </div>
         {/* text */}
-        <div className="max-w-6xl mx-auto w-full">
+        <div className="max-w-6xl mx-auto w-[90%] sm:w-full">
           {chunks.map((chunk, index) => (
             <div
               key={index}
@@ -124,11 +124,11 @@ const HoverText = () => {
               className=" mb-2"
             >
               <p
-                className=" text-left text-2xl md:text-5xl lg:text-6xl font-bold leading-tight transition-colors duration-500 ease-out"
+                className=" text-left text-2xl md:text-5xl lg:text-6xl font-body sm:font-semibold leading-tight transition-colors duration-500 ease-out"
                 style={{
                   color: visibleElements.has(index) ? '#ffffff' : '#4a5568',
                   textShadow: visibleElements.has(index)
-                    ? '0 0 15px rgba(255, 255, 255, 0.3)'
+                    ? '0 0 5px rgba(255, 255, 255, 0.3)'
                     : 'none'
                 }}
               >

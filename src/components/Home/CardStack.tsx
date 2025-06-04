@@ -25,7 +25,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Not just cool air — clean air.',
       description:
         'Save cost, space, and complexity with built-in purification. Perfect for health-conscious urban homes like Delhi NCR & Bengaluru.',
-      imageUrl: '/assets/bg/1.jpg'
+      imageUrl: '/assets/bg/2.jpg'
     },
     {
       id: 'panel-2',
@@ -33,7 +33,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Helium ACs protect themselves.',
       description:
         'Detect gas leaks before they become breakdowns. No surprise service calls — just peace of mind.',
-      imageUrl: '/assets/bg/2.jpg'
+      imageUrl: '/assets/bg/4.JPG'
     },
     {
       id: 'panel-3',
@@ -49,7 +49,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'The smartest AC you have ever owned.',
       description:
         'Control from anywhere, get smart alerts, and unlock advanced diagnostics — all from your phone.',
-      imageUrl: '/assets/bg/4.JPG'
+      imageUrl: '/assets/bg/1.jpg'
     },
     {
       id: 'panel-5',
@@ -123,81 +123,46 @@ const ImageStackedPinning: React.FC = () => {
 
       // Add effects to panels
       panelElements.forEach((panel: HTMLElement, index: number) => {
-        const img = panel.querySelector('.panel-image') as HTMLElement;
-        if (img) {
-          // Parallax effect
-          // gsap.fromTo(img,
-          //   { yPercent: -20 },
-          //   {
-          //     yPercent: 20,
-          //     ease: 'none',
-          //     scrollTrigger: {
-          //       trigger: panel,
-          //       start: 'top bottom',
-          //       end: 'bottom top',
-          //       scrub: true
-          //     }
-          //   }
-          // );
+        
+        if (index < panelElements.length - 1) {
+          const nextPanel = panelElements[index + 1];
+          const triggerElement = nextPanel;
 
-          // Scale and fade out effect when next panel approaches
-          if (index < panelElements.length - 1) {
-            const nextPanel = panelElements[index + 1];
+          // Animate the entire panel to disappear smoothly
+          gsap.fromTo(panel,
+            {
+              scale: 1,
+              opacity: 1,
+              transformOrigin: 'top top+=100'
+            },
+            {
+              scale: 0.85,
+              opacity: 0,
+              ease: 'power2.inOut',
+              scrollTrigger: {
+                trigger: triggerElement,
+                start: 'top bottom-=200px',
+                end: 'top top+=100',
+                scrub: 0,
+              }
+            }
+          );
 
-            // Create a longer, smoother animation trigger
-            const triggerElement = nextPanel;
-
-            // Animate the entire panel to disappear smoothly
-            gsap.fromTo(panel,
+          // Additional fade effect for content text
+          const content = panel.querySelector('.panel-content');
+          if (content) {
+            gsap.fromTo(content,
+              { opacity: 1 },
               {
-                scale: 1,
-                opacity: 1,
-                transformOrigin: 'top top+=100'
-              },
-              {
-                scale: 0.85, // Less aggressive scaling
                 opacity: 0,
-                ease: 'power2.inOut', // Smoother easing
                 scrollTrigger: {
                   trigger: triggerElement,
-                  start: 'top bottom-=200px', // Start earlier
-                  end: 'top top+=100', // End later for longer animation
-                  scrub: 0, // Slower scrub for smoother animation
-                  // Remove the visibility callbacks to prevent instant hiding
+                  start: 'top bottom-=200px',
+                  end: 'top top+=100',
+                  scrub: 0
                 }
               }
             );
-
-            // Separate blur effect with different timing
-            // gsap.fromTo(img,
-            //   { filter: 'blur(0px)' },
-            //   {
-            //     filter: 'blur(8px)', // Slightly more blur
-            //     scrollTrigger: {
-            //       trigger: triggerElement,
-            //       start: 'top bottom-=50px', // Start blur slightly later
-            //       end: 'top center',
-            //       scrub: 2 // Even slower for smoother blur transition
-            //     }
-            //   }
-            // );
-
-            // Additional fade effect for content text
-            const content = panel.querySelector('.text-center');
-            if (content) {
-              gsap.fromTo(content,
-                { opacity: 1 },
-                {
-                  opacity: 0,
-                  scrollTrigger: {
-                    trigger: triggerElement,
-                    start: 'top bottom-=200px', // Start earlier
-                    end: 'top top+=100', // End later for longer animation
-                    scrub: 0
-                  }
-                }
-              );
-            }
           }
         }
       });
@@ -218,63 +183,107 @@ const ImageStackedPinning: React.FC = () => {
   }, []);
 
   return (
-    <section className='w-full bg-[#033129] pt-6 sm:pt-12'>
-      {/* <p className='text-white text-4xl text-center sm:text-6xl font-bold w-fit mx-auto border-b-2 border-white'>Innovation at its <span className='text-[#f3942c]'>finest</span></p> */}
-      <div className="text-center mb-16 w-[90%] mx-auto">
-        <h2 className='text-white text-4xl sm:text-8xl font-bold  tracking-tight'>
+    <section className='w-full bg-[#131313] pt-6 sm:pt-12'>
+      <div className="text-center mb-16 mt-12 w-[90%] mx-auto">
+        <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
           Innovation at its
-          <span className="text-[#f3942c] border-b-2 border-[#f3942c] "> finest</span>
+          <span className="text-[#f3942c] border-b-2 border-[#f3942c]"> finest</span>
         </h2>
-        <p className="text-white/70 text-3xl mx-auto mt-4  w-[90%] tracking-tight">
+        <p className="text-white/70 text-lg mx-auto mt-4 w-[90%] tracking-tight">
           Everyday moments, reimagined with smart, app-first cooling.
         </p>
       </div>
-      <div ref={containerRef} className="relative w-4/5 mx-auto my-20">
-        {/* Image Panels */}
-        {imagePanels.map((panel, index) => (
-          <section
-            key={panel.id}
-            className="image-panel relative overflow-hidden rounded-2xl h-[60vh] lg:h-[80vh] mb-8 lg:mb-12"
-            style={{
-              zIndex: index + 10// Higher z-index for later panels
-            }}
-          >
-            {/* Background Image with Parallax */}
-            <div
-              className="panel-image absolute inset-0 w-full h-[120%] bg-cover bg-center bg-no-repeat rounded-2xl"
+      
+      <div ref={containerRef} className="relative w-[90%] lg:w-4/5 mx-auto my-20">
+        {/* Desktop Layout - Full Background Image with Text Overlay */}
+        <div className="hidden lg:block">
+          {imagePanels.map((panel, index) => (
+            <section
+              key={`desktop-${panel.id}`}
+              className="image-panel relative overflow-hidden rounded-2xl h-[80vh] mb-12"
               style={{
+                zIndex: index + 10,
                 backgroundImage: `url(${panel.imageUrl})`,
-                top: '-10%',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
               }}
             >
-              {/* Content */}
-              <div className="relative z-10 h-full flex items-center justify-center text-white px-4 sm:px-8 rounded-2xl">
-                <div className="text-center max-w-4xl rounded-2xl">
-                  <div className="mb-4 rounded-2xl">
-                    <span className="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm sm:text-base font-medium backdrop-blur-sm">
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
+              
+              {/* Text Content - Left Side */}
+              <div className="panel-content relative z-10 h-full flex items-center">
+                <div className="max-w-2xl p-12">
+                  <div className="mb-6">
+                    <span className="inline-block px-4 py-2 bg-white bg-opacity-20 rounded-full text-base font-medium backdrop-blur-sm text-white">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
 
-                  <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
+                  <h2 className="text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 leading-tight text-white">
                     {panel.title}
                   </h2>
 
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-light mb-6 text-blue-200">
+                  <h3 className="text-2xl xl:text-3xl font-light mb-6 text-blue-200">
                     {panel.subtitle}
                   </h3>
 
-                  <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto opacity-90">
+                  <p className="text-lg xl:text-xl leading-relaxed opacity-90 text-white/90 mb-8 max-w-lg">
                     {panel.description}
                   </p>
 
                   {/* Decorative line */}
-                  <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-8"></div>
+                  <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400"></div>
                 </div>
               </div>
-            </div>
-          </section>
-        ))}
+            </section>
+          ))}
+        </div>
+
+        {/* Mobile/Tablet Layout - Card with Black Text Section + Image Section */}
+        <div className="lg:hidden">
+          {imagePanels.map((panel, index) => (
+            <section
+              key={`mobile-${panel.id}`}
+              className="image-panel relative overflow-hidden rounded-2xl mb-8 border h-[70vh] border-gray-500"
+              style={{
+                zIndex: index + 10
+              }}
+            >
+              {/* Black Text Section at Top */}
+              <div className="panel-content bg-black rounded-t-2xl p-4 sm:p-8">
+                <div className="text-center">
+                  {/* <div className="mb-4">
+                    <span className="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm text-white">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div> */}
+
+                  <h2 className="text-2xl sm:text-4xl font-bold mb-2 mt-4 tracking-tight text-white">
+                    {panel.title}
+                  </h2>
+
+                  <h3 className="text-lg sm:text-xl font-light mb-2 tracking-tighter text-blue-200">
+                    {panel.subtitle}
+                  </h3>
+
+                  <p className="text-base sm:text-lg tracking-tighter opacity-90 text-white/80">
+                    {panel.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Image Section at Bottom */}
+              <div 
+                className="h-full sm:h-80 rounded-b-2xl bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url(${panel.imageUrl})`
+                }}
+              ></div>
+            </section>
+          ))}
+        </div>
       </div>
     </section>
   );
