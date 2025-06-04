@@ -90,14 +90,22 @@ const TestimonialSection = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        {/* <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What Our Customers Say
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Real experiences from customers who&apos;ve transformed their cooling experience with Helium
           </p>
-        </div>
+        </div> */}
+        <div className="text-center mb-16 mt-4 w-[90%] mx-auto">
+        <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
+          What Our Customers <span className="text-[#f5b841] border-b-1 sm:border-b-2 border-[#f5b841]">Say</span>
+        </h2>
+        <p className="text-white/70 text-lg mx-auto mt-4 w-[90%] tracking-tight">
+          Real experiences from customers who&apos;ve transformed their cooling experience with Helium
+        </p>
+      </div>
 
         {/* Desktop Grid View */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-6">

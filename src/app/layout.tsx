@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Layout/Nav";
 import Footer from "@/components/Layout/Footer";
-// import Footertwo from "@/components/Layout/Footer2";
 
 export const metadata: Metadata = {
   title: "Helium",
@@ -21,7 +20,6 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          {/* <Footertwo /> */}
         </div>
       </body>
     </html>

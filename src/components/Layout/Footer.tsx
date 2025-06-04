@@ -1,99 +1,254 @@
 "use client"
 
-import Link from 'next/link'
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import type React from "react"
+import { useState } from "react"
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Youtube,
+  PhoneCall  // Using this for WhatsApp (Lucide doesn't have a dedicated WhatsApp icon)
+} from 'lucide-react';
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear()
+
+const Footer: React.FC = () => {
+  const [email, setEmail] = useState("")
 
   return (
-    <footer className="bg-[#021F1B] text-[#F1F1F1] py-16 border-t border-[#f3942c]">
-      <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4 font-raleway text-[#f3942c]">Helium</h3>
-            <p className="text-[#9BAEA0] mb-6 leading-relaxed">
-              Revolutionizing comfort with smart, aesthetic air conditioning solutions for modern homes.
-            </p>
-            <div className="flex space-x-3">
-              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
-                <Facebook className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
-                <Twitter className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
-                <Instagram className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-[#F1F1F1] hover:text-[#00FFD1] hover:bg-[#00FFD1]/10 transition-all duration-300">
-                <Youtube className="h-5 w-5" />
-              </Button>
+    <footer className="bg-gradient-to-b from-[#1a1a1a] to-[#121212] text-gray-300 py-12 px-4 md:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Hero Section with Image */}
+          <div className="md:col-span-4 lg:col-span-3 relative overflow-hidden rounded-lg">
+            <div
+              className="relative h-[400px] md:h-full w-full bg-cover bg-center rounded-lg overflow-hidden"
+              style={{
+                backgroundImage: `url('/assets/footerimg.png')`,
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="absolute inset-0 bg-black/30 flex flex-col justify-center p-6">
+                <h2 className="text-white text-3xl md:text-4xl font-light leading-tight">
+                  Reimagine comfort
+                  <br />
+                  <span className="italic font-serif">with smarter cooling</span>
+                </h2>
+                <div className="mt-auto mx-auto">
+                  <a
+                    href="#"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-[#2563eb] text-white font-medium rounded-full hover:bg-[#1d4ed8] transition-colors"
+                  >
+                    Explore
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 font-raleway text-[#F1F1F1]">Quick Links</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link href="#products" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
-                  Our Products
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#support" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
-                  Support
-                </Link>
-              </li>
-              <li>
-                <Link href="#blog" className="text-[#9BAEA0] hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Navigation Columns */}
+          <div className="md:col-span-8 lg:col-span-9">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Our Company Column */}
+              <div>
+                <h3 className="text-gray-400 font-medium mb-4">Our Company</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      About Helium
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Founding Team
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Careers
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Press & Media
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Sustainability
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 font-raleway text-[#F1F1F1]">Contact</h3>
-            <ul className="space-y-4">
-              <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-[#A9E5C2]" />
-                <span className="text-[#9BAEA0]">support@helium.in</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-[#A9E5C2]" />
-                <span className="text-[#9BAEA0]">1800-123-4567</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-[#A9E5C2]" />
-                <span className="text-[#9BAEA0]">Bangalore, India</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+              {/* Support Column */}
+              <div>
+                <h3 className="text-gray-400 font-medium mb-4">Support</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors inline-flex items-center">
+                      Help Center 
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Installation Guide
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                    App Features
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors inline-flex items-center">
+                      Oura on the Web 
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Contact Us
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-[#145546]/50">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-[#CFCFCF] text-sm mb-4 md:mb-0">
-              © {currentYear} Helium. All rights reserved.
-            </p>
-            <div className="flex space-x-6">
-              <Link href="/privacy" className="text-[#9BAEA0] text-sm hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-[#9BAEA0] text-sm hover:text-[#00FFD1] hover:underline underline-offset-4 transition-all duration-300">
-                Terms of Service
-              </Link>
+              {/* Investors Column */}
+              <div>
+                <h3 className="text-gray-400 font-medium mb-4">Partner With Us</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Investor Relations
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Pitch Deck
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Growth Reports
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Governance
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Contact IR Team
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Newsletter and Social */}
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Newsletter Signup */}
+              <div className="order-2 lg:order-1">
+                <h3 className="text-gray-400 font-medium mb-4">Stay cool with product updates, early access, and smart tips.</h3>
+                <div className="flex">
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    className="bg-[#f5f5f0] text-gray-800 px-4 py-3 rounded-l-md w-full focus:outline-none"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <button
+                    className="bg-[#f5f5f0] text-gray-800 px-4 py-3 rounded-r-md hover:bg-gray-200 transition-colors"
+                    aria-label="Subscribe"
+                  >
+                  </button>
+                </div>
+                <p className="text-gray-500 text-sm mt-3">
+                  We care about protecting your data.
+                  <br />
+                  Read more in our{" "}
+                  <a href="#" className="underline hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
+              </div>
+
+              {/* Social Media */}
+              <div className="order-1 lg:order-2">
+                <h3 className="text-gray-400 font-medium mb-4">Social</h3>
+                <div className="flex flex-wrap gap-0.5 sm:gap-3 ">
+                  <a
+                    href="#"
+                    className="bg-[#f5f5f0] text-gray-800 p-3 rounded-full hover:bg-gray-200 transition-colors scale-75 sm:scale-100"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="h-5 w-5 " />
+                  </a>
+                  <a
+                    href="#"
+                    className="bg-[#f5f5f0] text-gray-800 p-3 rounded-full hover:bg-gray-200 transition-colors scale-75 sm:scale-100"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    className="bg-[#f5f5f0] text-gray-800 p-3 rounded-full hover:bg-gray-200 transition-colors scale-75 sm:scale-100"
+                    aria-label="Twitter"
+                  >
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    className="bg-[#f5f5f0] text-gray-800 p-3 rounded-full hover:bg-gray-200 transition-colors scale-75 sm:scale-100"
+                    aria-label="YouTube"
+                  >
+                    <Youtube className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    className="bg-[#f5f5f0] text-gray-800 p-3 rounded-full hover:bg-gray-200 transition-colors scale-75 sm:scale-100"
+                    aria-label="TikTok"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    className="bg-[#f5f5f0] text-gray-800 p-3 rounded-full hover:bg-gray-200 transition-colors scale-75 sm:scale-100"
+                    aria-label="Pinterest"
+                  >
+                    <PhoneCall className="h-5 w-5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Legal Footer */}
+            <div className="mt-12 pt-6 border-t border-gray-800">
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
+                <a href="#" className="text-gray-500 text-sm hover:text-white transition-colors">
+                  Terms & Conditions
+                </a>
+                <a href="#" className="text-gray-500 text-sm hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="text-gray-500 text-sm hover:text-white transition-colors">
+                  Accessibility
+                </a>
+                <a href="#" className="text-gray-500 text-sm hover:text-white transition-colors">
+                  IP Notice
+                </a>
+                <a href="#" className="text-gray-500 text-sm hover:text-white transition-colors">
+                  Security Center
+                </a>
+              </div>
+              <p className="text-gray-500 text-sm">© 2025 Helium Pvt. Ltd. | All Rights Reserved</p>
+              <p className="text-gray-500 text-sm mt-1">
+                HELIUM™, the Helium logo, and other brand assets are trademarks of Helium and may not be used without permission.
+              </p>
             </div>
           </div>
         </div>

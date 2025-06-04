@@ -36,7 +36,7 @@ const WaitlistSection = () => {
 
   return (
     <section 
-      className="w-full py-24 px-6"
+      className="w-full py-28 px-6"
       id="waitlist"
       style={{
                 backgroundImage: `url('/assets/bg/flipbg.png')`,
@@ -48,8 +48,7 @@ const WaitlistSection = () => {
       <div className="max-w-2xl mx-auto text-center">
         {/* Header */}
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-          Be The First To Experience{' '}
-          <span className="text-[#f3942c] border-b-2 border-[#f3942c]">Helium</span>
+          Be The First To Experience <span className="text-[#f5b841] border-b-1 sm:border-b-2 border-[#f5b841]">Helium</span>
         </h2>
         
         <p className="text-lg text-[#e4e8e2] mb-12 leading-relaxed">
@@ -71,7 +70,7 @@ const WaitlistSection = () => {
             <button 
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className="h-12 px-8 rounded-full font-semibold bg-[#f3942c] text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center whitespace-nowrap"
+              className="h-12 px-8 rounded-full font-semibold bg-[#f5b841] text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center whitespace-nowrap"
             >
               {isSubmitting ? (
                 <>

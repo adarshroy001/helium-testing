@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react';
+import { Heading, SubHeading } from '@/components/Heading/Heading';
 
 // Define image panel data with TypeScript interface
 interface ImagePanelData {
@@ -184,7 +185,7 @@ const ImageStackedPinning: React.FC = () => {
 
   return (
     <section className='w-full bg-[#1a1a1a] pt-6 sm:pt-12'>
-      <div className="text-center mb-16 mt-16 w-[90%] mx-auto">
+      {/* <div className="text-center mb-16 mt-16 w-[90%] mx-auto">
         <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
           Innovation at its
           <span className="text-[#f3942c] border-b-2 border-[#f3942c]"> finest</span>
@@ -192,7 +193,9 @@ const ImageStackedPinning: React.FC = () => {
         <p className="text-white/70 text-lg mx-auto mt-4 w-[90%] tracking-tight">
           Everyday moments, reimagined with smart, app-first cooling.
         </p>
-      </div>
+      </div> */}
+      <Heading text="Innovation at its finest" highlight="finest" maindesign='pt-16'  />
+      <SubHeading text="Everyday moments, reimagined with smart, app-first cooling." design='' />
       
       <div ref={containerRef} className="relative w-[90%] lg:w-4/5 mx-auto my-20">
         {/* Desktop Layout - Full Background Image with Text Overlay */}
