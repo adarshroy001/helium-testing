@@ -64,27 +64,27 @@ const Footer: React.FC = () => {
                 <h3 className="text-gray-400 font-medium mb-4">Our Company</h3>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       About Helium
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Founding Team
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Careers
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Press & Media
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Sustainability
                     </a>
                   </li>
@@ -96,27 +96,27 @@ const Footer: React.FC = () => {
                 <h3 className="text-gray-400 font-medium mb-4">Support</h3>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" className="hover:text-white transition-colors inline-flex items-center">
+                    <a href="#" className="hover:text-white transition-colors inline-flex items-center text-sm sm:text-base">
                       Help Center
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Installation Guide
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       App Features
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors inline-flex items-center">
+                    <a href="#" className="hover:text-white transition-colors inline-flex items-center text-sm sm:text-base">
                       Oura on the Web
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Contact Us
                     </a>
                   </li>
@@ -128,27 +128,27 @@ const Footer: React.FC = () => {
                 <h3 className="text-gray-400 font-medium mb-4">Partner With Us</h3>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Investor Relations
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Pitch Deck
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Growth Reports
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Governance
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-white transition-colors">
+                    <a href="#" className="hover:text-white transition-colors text-sm sm:text-base">
                       Contact IR Team
                     </a>
                   </li>

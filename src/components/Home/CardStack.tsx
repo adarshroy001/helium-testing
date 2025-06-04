@@ -21,7 +21,7 @@ const ImageStackedPinning: React.FC = () => {
   // Image panels with consistent dimensions (16:9 aspect ratio)
   const imagePanels: ImagePanelData[] = [
     {
-      id: 'panel-1',
+      id: '1',
       title: 'Integrated Air Purifier',
       subtitle: 'Not just cool air — clean air.',
       description:
@@ -29,7 +29,7 @@ const ImageStackedPinning: React.FC = () => {
       imageUrl: '/assets/bg/2.jpg'
     },
     {
-      id: 'panel-2',
+      id: '2',
       title: 'Refrigerant Leakage Detector',
       subtitle: 'Helium ACs protect themselves.',
       description:
@@ -37,7 +37,7 @@ const ImageStackedPinning: React.FC = () => {
       imageUrl: '/assets/bg/4.JPG'
     },
     {
-      id: 'panel-3',
+      id: '3',
       title: 'Front Panel Customisation',
       subtitle: 'Your AC, your style.',
       description:
@@ -45,7 +45,7 @@ const ImageStackedPinning: React.FC = () => {
       imageUrl: '/assets/bg/3.png'
     },
     {
-      id: 'panel-4',
+      id: '4',
       title: 'IoT Control & Smart Features',
       subtitle: 'The smartest AC you have ever owned.',
       description:
@@ -53,13 +53,14 @@ const ImageStackedPinning: React.FC = () => {
       imageUrl: '/assets/bg/1.jpg'
     },
     {
-      id: 'panel-5',
-      title: 'Innovative Pricing Model',
-      subtitle: 'Try Helium for ₹8,000.',
+      id: '5',
+      title: 'Heavy-Duty, Best-in-Class Machine',
+      subtitle: 'Built for extremes. Ready for anything.',
       description:
-        'Affordable like a subscription. Pay ₹8K upfront — commit fully only if you love it. No risk, just cool comfort.',
-      imageUrl: '/assets/bg/5.jpg'
+        'Engineered for Indian summers. Delivers top performance even at 55°C — powerful and durable.',
+      imageUrl: '/assets/bg/5.jpg' 
     }
+
   ];
 
   useEffect(() => {
@@ -124,7 +125,7 @@ const ImageStackedPinning: React.FC = () => {
 
       // Add effects to panels
       panelElements.forEach((panel: HTMLElement, index: number) => {
-        
+
         if (index < panelElements.length - 1) {
           const nextPanel = panelElements[index + 1];
           const triggerElement = nextPanel;
@@ -144,7 +145,7 @@ const ImageStackedPinning: React.FC = () => {
                 trigger: triggerElement,
                 start: 'top bottom-=200px',
                 end: 'top top+=100',
-                scrub: 0,
+                scrub: true,
               }
             }
           );
@@ -184,7 +185,7 @@ const ImageStackedPinning: React.FC = () => {
   }, []);
 
   return (
-    <section className='w-full bg-[#1a1a1a] pt-6 sm:pt-12'>
+    <section className='w-full bg-[#131313] pt-6 sm:pt-12'>
       {/* <div className="text-center mb-16 mt-16 w-[90%] mx-auto">
         <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
           Innovation at its
@@ -194,9 +195,9 @@ const ImageStackedPinning: React.FC = () => {
           Everyday moments, reimagined with smart, app-first cooling.
         </p>
       </div> */}
-      <Heading text="Innovation at its finest" highlight="finest" maindesign='pt-16'  />
+      <Heading text="Innovation at its finest" highlight="finest" maindesign='pt-16' />
       <SubHeading text="Everyday moments, reimagined with smart, app-first cooling." design='' />
-      
+
       <div ref={containerRef} className="relative w-[90%] lg:w-4/5 mx-auto my-20">
         {/* Desktop Layout - Full Background Image with Text Overlay */}
         <div className="hidden lg:block">
@@ -214,7 +215,7 @@ const ImageStackedPinning: React.FC = () => {
             >
               {/* Dark overlay for better text readability */}
               <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
-              
+
               {/* Text Content - Left Side */}
               <div className="panel-content relative z-10 h-full flex items-center">
                 <div className="max-w-2xl p-12">
@@ -255,7 +256,7 @@ const ImageStackedPinning: React.FC = () => {
               }}
             >
               {/* Black Text Section at Top */}
-              <div className="panel-content bg-[#121111] rounded-t-2xl h-[30%] p-4 sm:p-8">
+              <div className="panel-content bg-[#121111] rounded-t-2xl h-[32%] p-4 sm:p-8">
                 <div className="text-center">
                   {/* <div className="mb-4">
                     <span className="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm text-white">
@@ -278,7 +279,7 @@ const ImageStackedPinning: React.FC = () => {
               </div>
 
               {/* Image Section at Bottom */}
-              <div 
+              <div
                 className="h-full sm:h-80 rounded-b-2xl bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url(${panel.imageUrl})`

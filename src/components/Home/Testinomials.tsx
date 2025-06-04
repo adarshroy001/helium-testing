@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Testimonial {
@@ -12,10 +12,16 @@ interface Testimonial {
 const TestimonialSection = () => {
   const testimonials: Testimonial[] = [
     {
-      quote: "Helium is redefining comfort. The app-controlled cooling experience is so seamless, I can't imagine going back.",
-      name: "Ritika Sharma",
-      title: "Helium Customer",
-      company: "helium"
+      quote: "What I love about Helium is not just the product—it's the service. Fast, transparent, and customer-obsessed.",
+      name: "Nikhil Verma",
+      title: "Customer Experience Lead, Amazon",
+      company: "amazon"
+    },
+    {
+      quote: "We deployed Helium units in our co-working spaces and saw a 30% drop in user complaints overnight.",
+      name: "Priya Desai",
+      title: "COO, 91Springboard",
+      company: "flipkart"
     },
     {
       quote: "I ordered a Helium AC after a friend recommended it, and it's been a total game-changer this summer.",
@@ -24,26 +30,27 @@ const TestimonialSection = () => {
       company: "helium"
     },
     {
-      quote: "We deployed Helium units in our co-working spaces and saw a 30% drop in user complaints overnight.",
-      name: "Priya Desai",
-      title: "COO, 91Springboard",
-      company: "helium"
-    },
-    {
-      quote: "What I love about Helium is not just the product—it's the service. Fast, transparent, and customer-obsessed.",
-      name: "Nikhil Verma",
-      title: "Customer Experience Lead, Amazon",
+      quote: "Helium isn't selling ACs. They're selling experiences. This is what the future of appliances looks like.",
+      name: "Tanvi Ghosh",
+      title: "Design Strategist",
       company: "amazon"
     },
     {
-      quote: "Helium isn't selling ACs. They're selling experiences. This is what the future of appliances looks like.",
-      name: "Tanvi Ghosh",
-      title: "Design Strategist, boAt",
-      company: "boat"
-    }
+      quote: "Helium is redefining comfort. The app-controlled cooling experience is so seamless, I can't imagine going back.",
+      name: "Ritika Sharma",
+      title: "Helium Customer",
+      company: "helium"
+    },
+
   ];
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [startX, setStartX] = useState<number>(0);
+  const [translateX, setTranslateX] = useState<number>(0);
+  const [isUserInteracting, setIsUserInteracting] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = (): void => {
     setCurrentSlide((prev) => (prev + 1) % testimonials.length);
@@ -53,7 +60,108 @@ const TestimonialSection = () => {
     setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const getCompanyLogo = (company: string):  React.ReactElement => {
+  // Auto-slide functionality
+  const startAutoSlide = () => {
+    if (autoSlideRef.current) {
+      clearInterval(autoSlideRef.current);
+    }
+    autoSlideRef.current = setInterval(() => {
+      if (!isUserInteracting) {
+        nextSlide();
+      }
+    }, 3000);
+  };
+
+  const stopAutoSlide = () => {
+    if (autoSlideRef.current) {
+      clearInterval(autoSlideRef.current);
+      autoSlideRef.current = null;
+    }
+  };
+
+  // Initialize auto-slide and clean up
+  useEffect(() => {
+    startAutoSlide();
+    return () => stopAutoSlide();
+  }, [isUserInteracting]);
+
+  // Reset auto-slide when slide changes
+  useEffect(() => {
+    if (!isUserInteracting) {
+      startAutoSlide();
+    }
+  }, [currentSlide, isUserInteracting]);
+
+  // Touch/Mouse event handlers
+  const handleStart = (clientX: number) => {
+    setIsDragging(true);
+    setStartX(clientX);
+    setTranslateX(0);
+    setIsUserInteracting(true);
+    stopAutoSlide();
+  };
+
+  const handleMove = (clientX: number) => {
+    if (!isDragging) return;
+    const deltaX = clientX - startX;
+    setTranslateX(deltaX);
+  };
+
+  const handleEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    const threshold = 50; // Minimum distance to trigger slide change
+
+    if (translateX > threshold) {
+      // Swipe right - go to previous slide
+      prevSlide();
+    } else if (translateX < -threshold) {
+      // Swipe left - go to next slide
+      nextSlide();
+    }
+
+    setTranslateX(0);
+
+    // Resume auto-slide after user interaction
+    setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 1000);
+  };
+
+  // Touch events
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleMove(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    handleEnd();
+  };
+
+  // Mouse events (for desktop testing)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    handleStart(e.clientX);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    handleMove(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    handleEnd();
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleEnd();
+    }
+  };
+
+  const getCompanyLogo = (company: string): React.ReactElement => {
     switch (company) {
       case 'amazon':
         return (
@@ -62,10 +170,10 @@ const TestimonialSection = () => {
             <div className="w-8 h-0.5 bg-orange-400 rounded-full mt-0.5"></div>
           </div>
         );
-      case 'boat':
+      case 'flipkart':
         return (
           <div className="text-white font-bold text-lg">
-            boAt
+            Flipkart
             <div className="w-8 h-0.5 bg-red-400 rounded-full mt-0.5"></div>
           </div>
         );
@@ -81,31 +189,23 @@ const TestimonialSection = () => {
 
   return (
     <section className="py-20 px-4 w-full"
-    style={{
-                backgroundImage: `url('/assets/bg/modern-background-with-lines.jpg')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}
+      style={{
+        backgroundImage: `url('/assets/bg/modern-background-with-lines.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        {/* <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            What Our Customers Say
+        <div className="text-center mb-16 mt-4 w-[90%] mx-auto">
+          <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
+            What Our Customers <span className="text-[#f5b841] border-b-1 sm:border-b-2 border-[#f5b841]">Say</span>
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg mx-auto mt-4 w-[90%] tracking-tight">
             Real experiences from customers who&apos;ve transformed their cooling experience with Helium
           </p>
-        </div> */}
-        <div className="text-center mb-16 mt-4 w-[90%] mx-auto">
-        <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
-          What Our Customers <span className="text-[#f5b841] border-b-1 sm:border-b-2 border-[#f5b841]">Say</span>
-        </h2>
-        <p className="text-white/70 text-lg mx-auto mt-4 w-[90%] tracking-tight">
-          Real experiences from customers who&apos;ve transformed their cooling experience with Helium
-        </p>
-      </div>
+        </div>
 
         {/* Desktop Grid View */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-6">
@@ -113,7 +213,7 @@ const TestimonialSection = () => {
             <div key={`desktop-${index}`} className="bg-black rounded-2xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
               {/* Background gradient effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-full blur-3xl"></div>
-              
+
               <div className="relative z-10">
                 {/* Company Logo */}
                 <div className="mb-8">
@@ -145,20 +245,32 @@ const TestimonialSection = () => {
           ))}
         </div>
 
-        {/* Mobile Carousel View */}
+        {/* Mobile Swipe Carousel View */}
         <div className="lg:hidden pb-8 pt-8">
           <div className="relative">
-            <div className="overflow-hidden">
-              <div 
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            <div
+              ref={containerRef}
+              className="overflow-hidden cursor-grab active:cursor-grabbing"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={isDragging ? handleMouseMove : undefined}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div
+                className={`flex transition-transform duration-300 ease-in-out ${isDragging ? 'transition-none' : ''}`}
+                style={{
+                  transform: `translateX(${-currentSlide * 100 + (translateX / (containerRef.current?.offsetWidth || 1)) * 100}%)`
+                }}
               >
                 {testimonials.map((testimonial, index) => (
                   <div key={`mobile-${index}`} className="w-full flex-shrink-0 px-4">
                     <div className="bg-black rounded-2xl p-6 md:p-8 text-white relative overflow-hidden">
                       {/* Background gradient effect */}
                       <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-full blur-3xl"></div>
-                      
+
                       <div className="relative z-10">
                         {/* Company Logo */}
                         <div className="mb-6">
@@ -191,23 +303,6 @@ const TestimonialSection = () => {
                 ))}
               </div>
             </div>
-
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow duration-200"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-5 h-5 text-gray-800" />
-            </button>
-            
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow duration-200"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-5 h-5 text-gray-800" />
-            </button>
           </div>
 
           {/* Slide Indicators */}
@@ -215,10 +310,14 @@ const TestimonialSection = () => {
             {testimonials.map((_, index) => (
               <button
                 key={`indicator-${index}`}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                  index === currentSlide ? 'bg-black' : 'bg-gray-300'
-                }`}
+                onClick={() => {
+                  setCurrentSlide(index);
+                  setIsUserInteracting(true);
+                  stopAutoSlide();
+                  setTimeout(() => setIsUserInteracting(false), 2000);
+                }}
+                className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentSlide ? 'bg-white' : 'bg-gray-500'
+                  }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
@@ -231,7 +330,7 @@ const TestimonialSection = () => {
             <div key={`bottom-${index + 3}`} className="bg-black rounded-2xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
               {/* Background gradient effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-full blur-3xl"></div>
-              
+
               <div className="relative z-10">
                 {/* Company Logo */}
                 <div className="mb-8">
