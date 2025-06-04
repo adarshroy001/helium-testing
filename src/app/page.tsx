@@ -1,7 +1,7 @@
 import ImageStackedPinning from "@/components/Home/CardStack";
 import HeroSection from "@/components/Home/HeroSection";
 import HoverText from "@/components/Home/HoverText";
-import Testinomials from "@/components/Home/Testinomials";
+import TestimonialSection from "@/components/Home/Testinomials";
 import WaitlistSection from "@/components/Home/WaitlistSection";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
           <HeroSection />
           <HoverText/>
           <ImageStackedPinning/>
-          <Testinomials/>
+          <TestimonialSection/>
           <WaitlistSection/>
     </main>
   );

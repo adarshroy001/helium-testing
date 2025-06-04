@@ -52,7 +52,7 @@ const HeroSection = () => {
           playsInline
         >
           <source
-            src="/assets/phone-hero.mp4"
+            src="/assets/hero-3.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.

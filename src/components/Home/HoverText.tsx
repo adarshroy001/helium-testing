@@ -111,8 +111,8 @@ const HoverText = () => {
       >
         {/* header */}
         <div className="mb-12 sm:mb-16 mx-auto">
-          <h2 className='text-white text-2xl font-heading font-semibold sm:text-5xl mb-4 tracking-tighter mx-auto w-[90%] sm:w-full'>
-            NOT EVERY AC IS <span className="text-[#f3942c] border-b-2 border-[#f3942c] tracking-tighter">HELIUM</span>
+          <h2 className='text-white text-2xl italic font-heading font-semibold sm:text-5xl mb-4 tracking-tighter mx-auto w-[90%] sm:w-full'>
+            NOT EVERY AC IS <span className="text-[#f5b841] border-b-2 border-[#f5b841] tracking-tighter">HELIUM</span>
           </h2>
         </div>
         {/* text */}
@@ -124,7 +124,7 @@ const HoverText = () => {
               className=" mb-2"
             >
               <p
-                className=" text-left text-2xl md:text-5xl lg:text-6xl font-body sm:font-semibold leading-tight transition-colors duration-500 ease-out"
+                className="text-left text-2xl md:text-5xl lg:text-6xl font-body sm:font-semibold leading-tight transition-colors duration-500 ease-out"
                 style={{
                   color: visibleElements.has(index) ? '#ffffff' : '#4a5568',
                   textShadow: visibleElements.has(index)

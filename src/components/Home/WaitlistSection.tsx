@@ -1,18 +1,13 @@
 "use client"
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { ArrowRight, CheckCircle } from 'lucide-react'
-
-const cn = (...classes: (string | undefined | null | boolean)[]) => classes.filter(Boolean).join(' ');
 
 const WaitlistSection = () => {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
-  const [isVisible, setIsVisible] = useState(false)
-  
-  const sectionRef = useRef<HTMLElement>(null)
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,52 +21,35 @@ const WaitlistSection = () => {
     
     setIsSubmitting(true)
     
+    // Simulate a network request
     setTimeout(() => {
       setIsSubmitting(false)
       setIsSuccess(true)
       setEmail('')
       
+      // Reset success message after a delay
       setTimeout(() => {
         setIsSuccess(false)
       }, 4000)
     }, 1500)
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.3 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section 
-      ref={sectionRef}
-      className="w-full py-24 px-6 bg-[#033129]"
+      className="w-full py-24 px-6"
       id="waitlist"
+      style={{
+                backgroundImage: `url('/assets/bg/flipbg.png')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
     >
-      <div 
-        className={cn(
-          "max-w-2xl mx-auto text-center transition-all duration-700 ease-out",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}
-      >
+      <div className="max-w-2xl mx-auto text-center">
         {/* Header */}
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
           Be The First To Experience{' '}
           <span className="text-[#f3942c] border-b-2 border-[#f3942c]">Helium</span>
-
         </h2>
         
         <p className="text-lg text-[#e4e8e2] mb-12 leading-relaxed">
@@ -87,28 +65,17 @@ const WaitlistSection = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e)}
-              className={cn(
-                "flex-grow h-12 px-4 rounded-full transition-all duration-300",
-                "bg-white text-[#033129] placeholder-gray-500",
-                "border-2 border-transparent focus:border-[#f3942c] focus:outline-none",
-                "hover:shadow-lg focus:shadow-lg"
-              )}
+              className="flex-grow h-12 px-4 rounded-full bg-white text-[#033129] placeholder-gray-500 border-2 border-transparent focus:border-[#f3942c] focus:outline-none"
             />
             
             <button 
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className={cn(
-                "h-12 px-8 rounded-full font-semibold transition-all duration-300",
-                "bg-[#f3942c] text-white hover:bg-[#f3942c]/90",
-                "disabled:opacity-50 disabled:cursor-not-allowed",
-                "flex items-center justify-center hover:shadow-lg",
-                "whitespace-nowrap"
-              )}
+              className="h-12 px-8 rounded-full font-semibold bg-[#f3942c] text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center whitespace-nowrap"
             >
               {isSubmitting ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full mr-2"></div>
                   Joining...
                 </>
               ) : (

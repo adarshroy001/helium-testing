@@ -183,8 +183,8 @@ const ImageStackedPinning: React.FC = () => {
   }, []);
 
   return (
-    <section className='w-full bg-[#131313] pt-6 sm:pt-12'>
-      <div className="text-center mb-16 mt-12 w-[90%] mx-auto">
+    <section className='w-full bg-[#1a1a1a] pt-6 sm:pt-12'>
+      <div className="text-center mb-16 mt-16 w-[90%] mx-auto">
         <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
           Innovation at its
           <span className="text-[#f3942c] border-b-2 border-[#f3942c]"> finest</span>
@@ -246,13 +246,13 @@ const ImageStackedPinning: React.FC = () => {
           {imagePanels.map((panel, index) => (
             <section
               key={`mobile-${panel.id}`}
-              className="image-panel relative overflow-hidden rounded-2xl mb-8 border h-[70vh] border-gray-500"
+              className="image-panel relative overflow-hidden rounded-2xl mb-8 border h-[70vh] border-[#282626]"
               style={{
                 zIndex: index + 10
               }}
             >
               {/* Black Text Section at Top */}
-              <div className="panel-content bg-black rounded-t-2xl p-4 sm:p-8">
+              <div className="panel-content bg-[#121111] rounded-t-2xl h-[30%] p-4 sm:p-8">
                 <div className="text-center">
                   {/* <div className="mb-4">
                     <span className="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm text-white">
@@ -264,11 +264,11 @@ const ImageStackedPinning: React.FC = () => {
                     {panel.title}
                   </h2>
 
-                  <h3 className="text-lg sm:text-xl font-light mb-2 tracking-tighter text-blue-200">
+                  {/* <h3 className="text-lg sm:text-xl font-light mb-2 tracking-tighter text-blue-200">
                     {panel.subtitle}
-                  </h3>
+                  </h3> */}
 
-                  <p className="text-base sm:text-lg tracking-tighter opacity-90 text-white/80">
+                  <p className="text-sm sm:text-lg tracking-tighter opacity-90 text-white/80">
                     {panel.description}
                   </p>
                 </div>
