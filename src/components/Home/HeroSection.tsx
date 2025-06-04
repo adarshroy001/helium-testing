@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 // Utility function to combine class names
 const cn = (...classes: (string | boolean | undefined | null)[]): string => {
   return classes.filter(Boolean).join(' ')
@@ -58,23 +59,25 @@ const HeroSection = () => {
         </video>
       </div>
       {/* Explore Button - Bottom for mobile screens */}
-      <div className="absolute bottom-24 z-20 w-full">        
+      <div className="absolute bottom-40 sm:bottom-24 z-20 w-full">        
         <h1 className="text-[#e4e8e2] text-center font-Garet text-xl sm:text-2xl md:text-4xl font-bold leading-tight tracking-tight">
           <div className="mb-2">
             Reimagining AC for New India
           </div>
         </h1>
       </div>
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">        
+      <div className="absolute bottom-24 sm:bottom-10 left-1/2 transform -translate-x-1/2 z-20">        
         <Button
           size="lg"
           className={cn(
-            "bg-[#f3942c] text-white hover:bg-[#f3942c]/90 transition-all duration-700 delay-400 ease-out rounded-full px-8 py-6 text-lg max-w-fit",
+            "bg-[#f5b841] text-[#1e2a28]  transition-all duration-300 delay-100 ease-out rounded-full px-8 py-6 text-lg max-w-fit",
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}
         >
-          Shop Now
+          <Link href={'/'} className='flex justify-center items-center'>
+           <p>Shop Now</p>
           <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </Button>
       </div>
     </section>

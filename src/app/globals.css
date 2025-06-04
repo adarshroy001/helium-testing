@@ -24,3 +24,25 @@ body {
   color: var(--foreground);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
+@font-face {
+  font-family: 'Gatwick';
+  src: url('/fonts/Gatwick-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('/fonts/GlacialIndifference-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Garet';
+  src: url('/fonts/Garet-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

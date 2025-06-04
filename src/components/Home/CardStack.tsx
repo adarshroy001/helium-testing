@@ -221,11 +221,11 @@ const ImageStackedPinning: React.FC = () => {
     <section className='w-full bg-[#033129] pt-6 sm:pt-12'>
       {/* <p className='text-white text-4xl text-center sm:text-6xl font-bold w-fit mx-auto border-b-2 border-white'>Innovation at its <span className='text-[#f3942c]'>finest</span></p> */}
       <div className="text-center mb-16 w-[90%] mx-auto">
-        <h2 className='text-white text-4xl sm:text-5xl font-bold mb-4 tracking-tight'>
+        <h2 className='text-white text-4xl sm:text-8xl font-bold  tracking-tight'>
           Innovation at its
-          <span className="text-[#f3942c] border-b-2 border-[#f3942c] pb-1"> finest</span>
+          <span className="text-[#f3942c] border-b-2 border-[#f3942c] "> finest</span>
         </h2>
-        <p className="text-white/70 text-lg mx-auto  w-[90%] tracking-tight">
+        <p className="text-white/70 text-3xl mx-auto mt-4  w-[90%] tracking-tight">
           Everyday moments, reimagined with smart, app-first cooling.
         </p>
       </div>

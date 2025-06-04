@@ -82,10 +82,9 @@ const config: Config = {
         scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
       },
       fontFamily: {
-        logo: ["var(--font-gatwick)", ...defaultTheme.fontFamily.sans],
-        heading: ["var(--font-glacial)", ...defaultTheme.fontFamily.sans],
-        body: ["var(--font-garet)", ...defaultTheme.fontFamily.sans],
-        garet: ["var(--font-garet)", ...defaultTheme.fontFamily.sans],
+        logo: ['Gatwick', 'sans-serif'],
+        heading: ['Glacial Indifference', 'sans-serif'],
+        body: ['Garet', 'sans-serif'],
       },
     },
   },

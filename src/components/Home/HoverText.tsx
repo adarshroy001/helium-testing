@@ -91,7 +91,7 @@ const HoverText = () => {
     "no more ugly grills",
     "just a sleek finish",
 
-    "we don’t build ACs",
+    "we don't build ACs",
     "we build future air",
     "personal, adaptive, intelligent",
     "a better standard, finally",
