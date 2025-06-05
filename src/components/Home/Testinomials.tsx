@@ -192,7 +192,7 @@ const TestimonialSection = () => {
       style={{
         backgroundImage: `url('/assets/bg/modern-background-with-lines.jpg')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        // backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}
     >

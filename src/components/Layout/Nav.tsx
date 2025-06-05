@@ -16,7 +16,7 @@ const Navbar = () => {
       const isMobile = window.innerWidth < 640 // sm breakpoint
       
       // Set scrolled state
-      setIsScrolled(currentScrollY > 20)
+      setIsScrolled(currentScrollY > 15)
       
       if (isMobile) {
         // Mobile: hide/show based on scroll direction, no threshold
