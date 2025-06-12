@@ -64,7 +64,7 @@ const FloatingGallery = () => {
                     </div>
                 </div>
                 {/* button for mobile */}
-                <button className="bg-[#f5b841] block lg:hidden text-[#1e2a28] font-normal sm:font-semibold py-3 px-6 rounded-4xl text-center text-lg transition-all duration-300">
+                <button className="bg-[#f5b841] block lg:hidden text-[#1e2a28] font-normal sm:font-semibold py-2 px-6 rounded-4xl text-center text-lg transition-all duration-300">
                     Shop Now
                 </button>
 

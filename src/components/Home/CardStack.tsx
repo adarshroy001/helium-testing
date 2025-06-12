@@ -58,7 +58,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Built for extremes. Ready for anything.',
       description:
         'Engineered for Indian summers. Delivers top performance even at 55°C — powerful and durable.',
-      imageUrl: '/assets/bg/5.jpg' 
+      imageUrl: '/assets/bg/5.jpg'
     }
 
   ];
@@ -99,76 +99,84 @@ const ImageStackedPinning: React.FC = () => {
       initStackedPinning();
     };
 
-    const initStackedPinning = () => {
-      if (!gsap || !ScrollTrigger || !containerRef.current) return;
+const initStackedPinning = () => {
+  if (!gsap || !ScrollTrigger || !containerRef.current) return;
 
-      // Get all panel elements
-      const panelElements = gsap.utils.toArray('.image-panel') as HTMLElement[];
+  // Check if we're on desktop or mobile
+  const isDesktop = window.innerWidth >= 1024; // lg breakpoint
+  
+  // Get panel elements based on screen size
+  const panelElements = gsap.utils.toArray(
+    isDesktop ? '.image-panel-desktop' : '.image-panel-mobile'
+  ) as HTMLElement[];
 
-      // Create pinning ScrollTrigger for each panel
-      panelElements.forEach((panel: HTMLElement, index: number) => {
-        ScrollTrigger.create({
-          trigger: panel,
-          start: () => panel.offsetHeight < window.innerHeight ? 'top top+=80' : 'bottom bottom',
-          pin: true,
-          pinSpacing: false,
-          end: () => {
-            // End pinning when the next panel reaches the top
-            if (index < panelElements.length - 1) {
-              const nextPanel = panelElements[index + 1];
-              return `+=${nextPanel.offsetTop - panel.offsetTop}`;
-            }
-            return '+=0%';
-          }
-        });
-      });
+  // Create pinning ScrollTrigger for each panel
+  panelElements.forEach((panel: HTMLElement, index: number) => {
+    // Skip pinning for the last panel to ensure it's always visible
+    if (index === panelElements.length - 1) return;
 
-      // Add effects to panels
-      panelElements.forEach((panel: HTMLElement, index: number) => {
-
+    ScrollTrigger.create({
+      trigger: panel,
+      start: () => panel.offsetHeight < window.innerHeight ? 'top top+=80' : 'bottom bottom',
+      pin: true,
+      pinSpacing: false,
+      end: () => {
+        // End pinning when the next panel reaches the top
         if (index < panelElements.length - 1) {
           const nextPanel = panelElements[index + 1];
-          const triggerElement = nextPanel;
+          return `+=${nextPanel.offsetTop - panel.offsetTop}`;
+        }
+        return '+=100vh'; // Ensure enough scroll distance
+      }
+    });
+  });
 
-          // Animate the entire panel to disappear smoothly
-          gsap.fromTo(panel,
-            {
-              scale: 1,
-              opacity: 1,
-              transformOrigin: 'top top+=100'
-            },
-            {
-              scale: 0.85,
-              opacity: 0,
-              ease: 'power2.inOut',
-              scrollTrigger: {
-                trigger: triggerElement,
-                start: 'top bottom-=200px',
-                end: 'top top+=100',
-                scrub: true,
-              }
-            }
-          );
+  // Add effects to panels (exclude the last one from fade out)
+  panelElements.forEach((panel: HTMLElement, index: number) => {
+    // Don't animate the last panel
+    if (index >= panelElements.length - 1) return;
 
-          // Additional fade effect for content text
-          const content = panel.querySelector('.panel-content');
-          if (content) {
-            gsap.fromTo(content,
-              { opacity: 1 },
-              {
-                opacity: 0,
-                scrollTrigger: {
-                  trigger: triggerElement,
-                  start: 'top bottom-=200px',
-                  end: 'top top+=100',
-                  scrub: 0
-                }
-              }
-            );
+    const nextPanel = panelElements[index + 1];
+    const triggerElement = nextPanel;
+
+    // Animate the entire panel to disappear smoothly
+    gsap.fromTo(panel,
+      {
+        scale: 1,
+        opacity: 1,
+        transformOrigin: 'top top+=100'
+      },
+      {
+        scale: 0.85,
+        opacity: 0,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: triggerElement,
+          start: 'top bottom-=200px',
+          end: 'top top+=100',
+          scrub: true,
+        }
+      }
+    );
+
+    // Additional fade effect for content text
+    const content = panel.querySelector('.panel-content');
+    if (content) {
+      gsap.fromTo(content,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: triggerElement,
+            start: 'top bottom-=200px',
+            end: 'top top+=100',
+            scrub: 0
           }
         }
-      });
-    };
+      );
+    }
+  });
+};
 
     loadGSAP();
 
@@ -198,13 +206,13 @@ const ImageStackedPinning: React.FC = () => {
       <Heading text="Innovation at its finest" highlight="finest" maindesign='pt-16' />
       <SubHeading text="Everyday moments, reimagined with smart, app-first cooling." design='' />
 
-      <div ref={containerRef} className="relative w-[90%] lg:w-4/5 mx-auto my-20">
+      <div ref={containerRef} className="relative w-[90%] lg:w-4/5 mx-auto my-20 pb-4 lg:pb-10">
         {/* Desktop Layout - Full Background Image with Text Overlay */}
         <div className="hidden lg:block">
           {imagePanels.map((panel, index) => (
             <section
               key={`desktop-${panel.id}`}
-              className="image-panel relative overflow-hidden rounded-2xl h-[80vh] mb-12"
+              className="image-panel-desktop relative overflow-hidden rounded-2xl h-[80vh] mb-12"
               style={{
                 zIndex: index + 10,
                 backgroundImage: `url(${panel.imageUrl})`,
@@ -250,7 +258,7 @@ const ImageStackedPinning: React.FC = () => {
           {imagePanels.map((panel, index) => (
             <section
               key={`mobile-${panel.id}`}
-              className="image-panel relative overflow-hidden rounded-2xl mb-8 border h-[70vh] border-[#282626]"
+              className="image-panel-mobile relative overflow-hidden rounded-2xl mb-8 border h-[70vh] border-[#282626]"
               style={{
                 zIndex: index + 10
               }}
