@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
               className="relative h-[400px] md:h-full w-full bg-cover bg-center rounded-lg overflow-hidden"
               style={{
                 backgroundImage: `url('/assets/bg/ManUAC.png')`,
-                backgroundPosition: "center",
+                // backgroundPosition: "center",
               }}
             >
               <div className="absolute inset-0 bg-black/30 flex flex-col justify-center p-6">
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
 
           {/* Navigation Columns */}
           <div className="md:col-span-8 lg:col-span-9">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Our Company Column */}
               <div>
                 <h3 className="text-gray-400 font-medium mb-4">Our Company</h3>

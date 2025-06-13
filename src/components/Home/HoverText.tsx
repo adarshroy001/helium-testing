@@ -273,7 +273,7 @@ const HoverText = () => {
                       ? "0 0 20px rgba(255, 255, 255, 0.15), 0 0 40px rgba(255, 255, 255, 0.1)"
                       : "none",
                     filter: visibleWords.has(index) ? "brightness(1.1) contrast(1.05)" : "brightness(0.7)",
-                    transitionDelay: `${(index%10 ) * 50}ms`, // Stagger animation
+                    transitionDelay: `${(index%10 ) * 10}ms`, // Stagger animation
                   }}
                 >
                   {wordData.word}
@@ -289,7 +289,7 @@ const HoverText = () => {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse opacity-20" />
           <div
             className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl animate-pulse opacity-30"
-            style={{ animationDelay: "1s" }}
+            style={{ animationDelay: "s" }}
           />
         </div>
       </section>

@@ -7,7 +7,7 @@ import WaitlistSection from "@/components/Home/WaitlistSection";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden">
+    <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden scroll-smooth">
           <HeroSection />
           <ImageStackedPinning/>
           <FloatingGallery/>
