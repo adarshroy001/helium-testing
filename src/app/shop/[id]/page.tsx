@@ -10,7 +10,7 @@ interface PageProps {
   };
 }
 
-const ProductDetailPage = ({ params }: PageProps) => {
+const Page = ({ params }: PageProps) => {
   const productId = params.id; //
 //   const params = useParams();
   const router = useRouter();
@@ -244,4 +244,4 @@ const ProductDetailPage = ({ params }: PageProps) => {
   );
 };
 
-export default ProductDetailPage;
+export default Page;
