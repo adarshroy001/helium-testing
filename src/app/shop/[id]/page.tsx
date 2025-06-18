@@ -10,7 +10,7 @@ interface PageProps {
   };
 }
 
-const ProductDetailPage: React.FC<PageProps> = ({ params }) => {
+const ProductDetailPage = ({ params }: PageProps) => {
   const productId = params.id; //
 //   const params = useParams();
   const router = useRouter();
