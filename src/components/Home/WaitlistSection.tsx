@@ -39,9 +39,9 @@ const WaitlistSection = () => {
       className="w-full py-28 px-6"
       id="waitlist"
       style={{
-                backgroundImage: `url('/assets/bg/flipbg2.jpg')`,
+                backgroundImage: `url('/assets/bg/b-bg1.jpg')`,
                 backgroundSize: 'cover',
-                // backgroundPosition: 'center',
+                backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
               }}
     >

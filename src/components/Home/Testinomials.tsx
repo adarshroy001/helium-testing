@@ -190,7 +190,7 @@ const TestimonialSection = () => {
   return (
     <section className="py-20 px-4 w-full"
       style={{
-        backgroundImage: `url('/assets/bg/modern-background-with-lines.jpg')`,
+        backgroundImage: `url('/assets/bg/b-bg1.jpg')`,
         backgroundSize: 'cover',
         // backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

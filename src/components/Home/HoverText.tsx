@@ -247,7 +247,9 @@ const HoverText = () => {
   })
 
   return (
-    <div className="min-h-fit w-full bg-gradient-to-b from-[#1B1B1B] via-[#1B1B1B] to-[#0F0F0F]">
+    <div className="min-h-fit w-full bg-[#000000] bg-gradient-to-b from-10% via-35% to-70%"
+    // bg-gradient-to-b from-[#1B1B1B] via-[#1B1B1B] to-[#0F0F0F]
+    >
       <Heading text="NOT EVERY AC IS " highlight="HELIUM" maindesign="pt-16" />
 
       <section className="min-h-screen mx-auto max-w-7xl px-6 sm:px-12 lg:px-16 mt-16 sm:mt-24 mb-16">
@@ -261,7 +263,7 @@ const HoverText = () => {
                 <span
                   ref={(el) => addToWordRefs(el, index)}
                   className={`
-                    inline-block transition-all duration-700 ease-out transform
+                    inline-block transition-all duration-300 ease-out transform
                     text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
                     font-light tracking-wide
                     ${
@@ -273,7 +275,7 @@ const HoverText = () => {
                       ? "0 0 20px rgba(255, 255, 255, 0.15), 0 0 40px rgba(255, 255, 255, 0.1)"
                       : "none",
                     filter: visibleWords.has(index) ? "brightness(1.1) contrast(1.05)" : "brightness(0.7)",
-                    transitionDelay: `${(index%10 ) * 10}ms`, // Stagger animation
+                    transitionDelay: `${(index%10 ) * 1}ms`, // Stagger animation
                   }}
                 >
                   {wordData.word}
@@ -289,7 +291,7 @@ const HoverText = () => {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse opacity-20" />
           <div
             className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl animate-pulse opacity-30"
-            style={{ animationDelay: "s" }}
+            style={{ animationDelay: "0s" }}
           />
         </div>
       </section>
