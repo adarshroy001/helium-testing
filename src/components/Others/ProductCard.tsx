@@ -15,11 +15,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
 
     return (
         <div
-            className="group relative bg-[#1f1f1f] rounded-2xl md:rounded-3xl max-w-[300px] overflow-hidden transition-all duration-500 hover:transform hover:scale-[1.02] cursor-pointer"
+            className="group relative bg-[#1f1f1f] rounded-2xl md:rounded-3xl max-w-[300px] overflow-hidden transition-all duration-500 hover:transform  cursor-pointer"
             onClick={() => {
                 setSelectedProduct(product);
                 setSelectedColor(0);
                 setCurrentImageIndex(0);
+                handleClick();
             }}
         >
             {/* Product Image */}
@@ -42,24 +43,24 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
 
                 {/* Badges */}
                 {product.isNew && (
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-[#033129] text-white text-xs font-bold rounded-full">
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-[#28a57f] text-white text-xs font-bold rounded-full">
                         NEW
                     </div>
                 )}
                 {product.isBestseller && (
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-[#033129] text-white text-xs font-bold rounded-full">
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-[#28a57f] text-white text-xs font-bold rounded-full">
                         BESTSELLER
                     </div>
                 )}
                 {product.isPremium && (
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-[#033129] text-white text-xs font-bold rounded-full">
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-[#28a57f] text-white text-xs font-bold rounded-full">
                         PREMIUM
                     </div>
                 )}
             </div>
 
             {/* Product Info */}
-            <div className="px-2 py-2 lg:px-6 lg:py-3 h-24 font-Metropolis" onClick={handleClick}>
+            <div className="px-2 py-2 lg:px-6 lg:py-3 h-24 font-Metropolis">
                 <h3 className="text-sm lg:text-lg font-medium text-white mb-0 lg:mb-1">{product.name}</h3>
 
                 {/* Star Rating */}

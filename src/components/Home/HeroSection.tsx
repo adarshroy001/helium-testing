@@ -74,7 +74,7 @@ const HeroSection = () => {
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}
         >
-          <Link href={'/'} className='flex justify-center items-center'>
+          <Link href={'/shop'}  className='flex justify-center items-center'>
            <p>Shop Now</p>
           <ArrowRight className="ml-2 h-5 w-5" />
           </Link>

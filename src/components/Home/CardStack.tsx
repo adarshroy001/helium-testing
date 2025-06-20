@@ -193,7 +193,7 @@ const initStackedPinning = () => {
   }, []);
 
   return (
-    <section className='w-full bg-[#131313] pt-6 sm:pt-12'>
+    <section className='w-full bg-[#0E0E10] pt-6 sm:pt-12'>
       {/* <div className="text-center mb-16 mt-16 w-[90%] mx-auto">
         <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
           Innovation at its

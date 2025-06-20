@@ -10,6 +10,7 @@ import {
   Youtube,
   PhoneCall  // Using this for WhatsApp (Lucide doesn't have a dedicated WhatsApp icon)
 } from 'lucide-react';
+import Link from "next/link";
 
 
 const Footer: React.FC = () => {
@@ -45,12 +46,12 @@ const Footer: React.FC = () => {
                   <span className="italic font-serif">with smarter cooling</span>
                 </h2>
                 <div className="mt-auto mx-auto">
-                  <a
-                    href="#"
+                  <Link
+                    href={'/shop'} 
                     className="inline-flex items-center justify-center px-6 py-3 bg-[#2563eb] text-white font-medium rounded-full hover:bg-[#1d4ed8] transition-colors"
                   >
                     Explore
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

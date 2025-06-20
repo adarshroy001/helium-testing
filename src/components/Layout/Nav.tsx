@@ -56,16 +56,16 @@ const Navbar = () => {
         <div className="px-6 lg:px-8 py-3 sm:py-4 hidden sm:block">
           <nav className="flex items-center justify-between space-x-0 sm:space-x-8">
             <Logo />
-            <Link href="why-helium" className='text-xl'>Why Helium</Link>
-            <Link href="shop" className='bg-[#f5b841] py-1.5 px-5 text-xl rounded-4xl text-[#1e2a28]'>Shop</Link>
+            <Link href="/why-helium" className='text-xl'>Why Helium</Link>
+            <Link href="/shop" className='bg-[#f5b841] py-1.5 px-5 text-xl rounded-4xl text-[#1e2a28]'>Shop</Link>
           </nav>
         </div>
         <div className="block sm:hidden px-6 lg:px-8 py-3">
           <nav className="flex items-center justify-between space-x-0 sm:space-x-8">
             <Logo />
             <div className='gap-3.5 flex justify-center items-center'>
-              <Link href="why-helium" className='tracking-tighter text-sm font-body'>Why Helium</Link>
-              <Link href="shop" className='bg-[#f5b841] py-1 px-4 rounded-2xl text-center text-sm text-[#1e2a28]'>Shop</Link>
+              <Link href="/why-helium" className='tracking-tighter text-sm font-body'>Why Helium</Link>
+              <Link href="/shop" className='bg-[#f5b841] py-1 px-4 rounded-2xl text-center text-sm text-[#1e2a28]'>Shop</Link>
             </div>
           </nav>
         </div>

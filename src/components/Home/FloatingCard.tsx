@@ -1,4 +1,7 @@
 'use client'
+
+import Link from "next/link";
+
 const FloatingGallery = () => {
     // Placeholder images with different aspect ratios to mimic the reference
     const images = [
@@ -17,7 +20,7 @@ const FloatingGallery = () => {
     ];
 
     return (
-        <section className="bg-[#0e0e0e] text-white py-20 px-6 md:px-12 lg:px-20 w-full min-h-screen">
+        <section className="bg-[#080808] text-white py-20 px-6 md:px-12 lg:px-20 w-full min-h-screen">
             <div className="w-full md:w-[90%] lg:[w-80%] mx-auto flex flex-col lg:flex-row items-center gap-3 sm:gap-12">
                 {/* Text Content */}
                 <div className="flex-1">
@@ -64,9 +67,9 @@ const FloatingGallery = () => {
                     </div>
                 </div>
                 {/* button for mobile */}
-                <button className="bg-[#f5b841] block lg:hidden text-[#1e2a28] font-normal sm:font-semibold py-2 px-6 rounded-4xl text-center text-lg transition-all duration-300">
+                <Link href={'/shop'} className="bg-[#f5b841] block lg:hidden text-[#1e2a28] font-normal sm:font-semibold py-2 px-6 rounded-4xl text-center text-lg transition-all duration-300">
                     Shop Now
-                </button>
+                </Link>
 
                 <style jsx>{`
             @keyframes float-up {
