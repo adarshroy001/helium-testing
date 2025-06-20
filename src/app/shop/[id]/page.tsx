@@ -8,9 +8,7 @@ import { products } from '@/mockdata/products';
 interface PageProps {
   params: Promise<{
     id: string;
-  }> | {
-    id: string;
-  };
+  }>;
 }
 
 const Page = ({ params }: PageProps) => {
@@ -28,7 +26,7 @@ const Page = ({ params }: PageProps) => {
   useEffect(() => {
     const getParams = async () => {
       try {
-        const resolvedParams = await Promise.resolve(params);
+        const resolvedParams = await params;
         setProductId(resolvedParams.id);
       } catch (error) {
         console.error('Error resolving params:', error);

@@ -247,7 +247,7 @@ const HoverText = () => {
   })
 
   return (
-    <div className="min-h-fit w-full bg-[#000000] bg-gradient-to-b from-10% via-35% to-70%"
+    <div className="min-h-fit w-full bg-[#000000]  scroll-smooth"
     // bg-gradient-to-b from-[#1B1B1B] via-[#1B1B1B] to-[#0F0F0F]
     >
       <Heading text="NOT EVERY AC IS " highlight="HELIUM" maindesign="pt-16" />
