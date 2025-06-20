@@ -88,11 +88,14 @@ export default function WhyHeliumPage() {
     return (
         <div className="min-h-screen bg-white overflow-hidden">
             {/* Hero Section */}
+
+
             <section
                 id="hero"
                 data-animate
-                className={`relative min-h-[95vh] md:min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 transition-all duration-1000 ${visibleSections.has("hero") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                className={`relative min-h-[95vh] md:min-h-screen flex items-center justify-center bg-[#033129] transition-all duration-1000 ${visibleSections.has("hero") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                     }`}
+                    // bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900
                 style={{
                     backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('/placeholder.svg?height=1080&width=1920&text=Modern+AC+Unit+Cooling+Technology')`,
                     backgroundSize: "cover",
@@ -101,49 +104,17 @@ export default function WhyHeliumPage() {
                 }}
             >
                 <div className="container mx-auto px-4 text-center text-white">
-                    <div className="max-w-4xl mx-auto space-y-8">
-                        <div className="">
-                            <blockquote className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
+                    <div className=" mx-auto space-y-8">
+                        <div className={`min-h-[95vh] sm:min-h-screen mt-[-5rem] flex flex-col justify-center transition-all duration-[2000ms] ease-out `}>
+                            <blockquote className="text-4xl mx-2 mt-24 md:mx-6 sm:text-[clamp(1.5rem,8vw,3rem)] md:text-5xl lg:text-8xl leading-loose md:leading-32 mb-8 font-[Georgia,'Times New Roman',serif]">
                                 "If you can fill the unforgiving minute with sixty seconds’ worth of distance run..."
                             </blockquote>
-                            {/* <cite className="text-lg md:text-xl text-white/70 font-light tracking-wide">
-                                — Rudyard Kipling
-                            </cite> */}
-                            <div className="w-24 h-0.5 mt-2 bg-gradient-to-r from-transparent via-white to-transparent mx-auto"></div>
-                            {/* <div className="w-24 mt-4 h-px bg-gradient-to-r from-transparent via-[#f5b841] to-transparent mx-auto mb-8"></div> */}
-                        </div>
 
-                        <div className={`flex flex-col justify-start transition-all duration-[2000ms] delay-[500ms] ease-out`}>
-                            <p className="text-lg md:text-xl text-slate-300 font-light italic">
+                            <div className="w-24 mt-4 h-px bg-gradient-to-r from-transparent via-[#f5b841] to-transparent mx-auto mb-8"></div>
+                            <p className="text-lg md:text-3xl text-slate-300 font-light italic">
                                 Kipling wrote that as a test of character — of grit, purpose, and relentless effort.
                             </p>
-                            <p className="text-lg mt-6 md:text-xl text-slate-300 font-light italic">
-                                <div className="text-[#28a57f] font-bold not-italic ">At Helium </div>
-                                we hold ourselves to a similar standard. To make every second of your life more
-                                <span className="text-[#f5b841]"> comfortable</span>,{' '}
-                                <span className="text-[#f5b841]"> healthier</span>, and{' '}
-                                <span className="text-[#f5b841]">effortless</span> {''}
-                                — without burning a hole in your pocket.
-                            </p>
-                            {/* <p className="text-lg md:text-xl text-slate-300 font-light italic">
-                                That’s why we’ve reimagined the air conditioner as more than just a cooling machine.
-                            </p> */}
                         </div>
-
-                        {/* <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                            <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">Helium</span>
-                        </h1>
-
-                        <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
-                            Making every second more comfortable, healthier, effortless
-                        </p> */}
-
-                        {/* <Button
-                            size="lg"
-                            className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-2xl"
-                        >
-                            Discover Why <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button> */}
                     </div>
                 </div>
 
@@ -158,13 +129,23 @@ export default function WhyHeliumPage() {
             <section
                 id="mission"
                 data-animate
-                className={`py-24 bg-gray-600 transition-all duration-1000 delay-200 ${visibleSections.has("mission") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                className={`py-24 min-h-screen bg-[#e2e8e6] ${visibleSections.has("mission") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                     }`}
+
             >
+                {/* bg-gray-600 transition-all duration-1000 delay-200 */}
                 <div className="container mx-auto px-4 text-center">
-                    <div className="max-w-4xl mx-auto">
+                    <div className="mx-auto max-w-[90%]">
                         {/* <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">Why Helium?</h2> */}
-                        <p className="text-xl md:text-3xl font-bold text-[#28a57f] leading-relaxed">
+                        <p className=" mt-8 text-3xl md:text-4xl lg:text-5xl leading-relaxed text-[#4a5754] font-normal mx-auto font-[Georgia,'Times New Roman',serif]">
+                            <div>At Helium</div>
+                            we hold ourselves to a similar standard. To make every second of your life more
+                            <span className="text-[#f5b841] font-semibold"> comfortable</span>,{' '}
+                            <span className="text-[#f5b841] font-semibold"> healthier</span>, and{' '}
+                            <span className="text-[#f5b841] font-semibold">effortless</span> {''}
+                            — without burning a hole in your pocket.
+                        </p>
+                        <p className="mt-8 text-xl md:text-2xl lg:text-3xl leading-relaxed text-[#4a5754] font-normal max-w-3xl mx-auto">
                             That’s why we’ve reimagined the air conditioner as more than just a cooling machine.
                         </p>
                     </div>
@@ -276,7 +257,7 @@ export default function WhyHeliumPage() {
                     <div className="max-w-4xl mx-auto space-y-12">
                         <div className="space-y-2">
                             <p className="text-xl md:text-4xl font-medium">
-                               And we believe that if we do all this — really do it
+                                And we believe that if we do all this — really do it
                             </p>
                             <h2 className="text-xl md:text-4xl font-light text-slate-300">
                                 <span className="bg-gradient-to-r from-white via-slate-200 to-slate-300 bg-clip-text text-transparent">

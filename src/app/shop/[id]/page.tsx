@@ -301,13 +301,13 @@ const Page = ({ params }: PageProps) => {
 
                 {/* Tonnage */}
                 {product.tonnage && (
-                  <div className="text-gray-300 text-md md:text-lg mb-1">{product.tonnage} • Inverter AC</div>
+                  <div className="text-gray-300 text-md md:text-lg mb-1">{product.tonnage} | 3 Star | Inverter </div>
                 )}
 
                 {/* Star Rating */}
                 {product.stars && (
                   <div className="flex items-center mb-1">
-                    <span className="text-gray-300 text-sm lg:text-base mr-1">Rating: </span>
+                    <span className="text-gray-300 text-sm lg:text-base mr-1">Review: </span>
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
@@ -315,7 +315,7 @@ const Page = ({ params }: PageProps) => {
                           }`}
                       />
                     ))}
-                    <span className="text-gray-300 text-xs ml-1">({product.stars}.0)</span>
+                    {/* <span className="text-gray-300 text-xs ml-1">({product.stars}.0)</span> */}
                   </div>
                 )}
 
