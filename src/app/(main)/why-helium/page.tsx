@@ -242,7 +242,8 @@ export default function WhyHeliumPage() {
     const isHeroMostlyComplete = displayedText.length > 70
 
     return (
-        <div className="overflow-hidden scroll-smooth">
+        
+        <div className="overflow-hidden scroll-smooth ">
             {/* Hero Section */}
             <section
                 id="hero"
