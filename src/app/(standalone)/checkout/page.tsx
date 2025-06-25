@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback, useMemo } from "react"
+import { useEffect, useState, useCallback, useMemo, Suspense } from "react"
 import { CreditCard, Smartphone, Wallet, Building2, Minus, Plus, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -17,7 +17,8 @@ import { Product } from "@/types/types"
 import { products } from "@/mockdata/products"
 import Logo from "@/components/ui/Logo"
 
-export default function CheckoutPage() {
+// Separate component to handle search params
+function CheckoutContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -34,7 +35,6 @@ export default function CheckoutPage() {
   const productId = searchParams.get('productId')
   const urlQuantity = searchParams.get('quantity')
   useEffect(() => { console.log('product and quantity', productId, urlQuantity); }, [])
-
 
   // Helper function to extract numeric value from price string
   const extractPrice = useCallback((priceString: string | number): number => {
@@ -519,6 +519,27 @@ export default function CheckoutPage() {
           </Card>
         </div>
       </div>
-    </div >
+    </div>
+  )
+}
+
+// Loading fallback component
+function CheckoutPageFallback() {
+  return (
+    <div className="min-h-screen bg-[#0e0e0e] text-white flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#f3942c] mx-auto mb-4"></div>
+        <p>Loading checkout...</p>
+      </div>
+    </div>
+  );
+}
+
+// Main component wrapped with Suspense
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<CheckoutPageFallback />}>
+      <CheckoutContent />
+    </Suspense>
   )
 }
