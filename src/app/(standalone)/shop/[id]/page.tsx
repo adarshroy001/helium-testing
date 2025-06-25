@@ -122,8 +122,8 @@ const Page = ({ params }: PageProps) => {
     if (!product?.stars) return null;
     
     return (
-      <div className="flex items-center mb-1">
-        <span className="text-gray-300 text-sm lg:text-base mr-1">Review: </span>
+      <div className="flex items-center mb-1 md:mb-4">
+        <span className="text-gray-300 text-sm md:text-lg mr-1 md:mr-2">Review: </span>
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
@@ -243,12 +243,12 @@ const Page = ({ params }: PageProps) => {
   }
 
   return (
-    <div className="bg-black text-white overflow-hidden py-24">
+    <div className="bg-black text-white min-h-screen overflow-hidden ">
       {/* Smaller + Medium Screen */}
-      <div className="relative block md:hidden z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <div className="relative block lg:hidden z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-6">
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Left Side - Product Images */}
-          <div className="md:w-1/2 bg-pink-500 rounded-2xl md:rounded-3xl">
+          <div className="md:w-1/2 rounded-2xl md:rounded-3xl">
             {/* Main Product Image */}
             <div className="relative h-96 sm:h-64 overflow-hidden rounded-2xl md:rounded-3xl">
               <div
@@ -328,7 +328,7 @@ const Page = ({ params }: PageProps) => {
       </div>
 
       {/* Larger Screen */}
-      <div className="h-full hidden md:block w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <div className="h-full hidden lg:block w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-24">
         {/* Bg Image */}
         <div className="w-full h-full rounded-3xl flex"
           style={{
@@ -358,25 +358,25 @@ const Page = ({ params }: PageProps) => {
           
           {/* Right Side - Product Details */}
           <div className="w-[45%] min-h-[86vh] flex justify-center items-center">
-            <div className="h-[440px] w-[400px] bg-[#1f1f1f]/60 rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 pb-4 px-4">
+            <div className="h-[85%] w-[80%] bg-[#1f1f1f]/60 rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 pb-4 px-4">
               <div className="mb-6">
-                <h1 className="text-lg md:text-xl font-medium text-white mb-1">{product.name}</h1>
+                <h1 className="text-lg md:text-3xl font-medium text-white mb-3">{product.name}</h1>
 
                 {/* Tonnage */}
                 {product.tonnage && (
-                  <div className="text-gray-300 text-md md:text-lg mb-1">{product.tonnage} | 3 Star | Inverter </div>
+                  <div className="text-gray-300 text-md md:text-xl mb-3">{product.tonnage} | 3 Star | Inverter </div>
                 )}
 
                 {/* Star Rating */}
                 {StarRating}
 
                 {/* Price */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-lg md:text-xl font-semibold text-white">{product.price}</span>
+                <div className="flex items-center gap-2 mb-4 md:mb-8">
+                  <span className="text-xl md:text-2xl font-semibold text-white">{product.price}</span>
                   {product.originalPrice && (
                     <>
-                      <span className="text-gray-500 line-through text-sm md:text-base">{product.originalPrice}</span>
-                      <span className="text-[#28a57f] bg-[#28a57f]/10 rounded-full px-3 py-1 text-sm">
+                      <span className="text-gray-500 line-through text-base md:text-lg">{product.originalPrice}</span>
+                      <span className="text-[#28a57f] bg-[#28a57f]/10 rounded-full px-3 py-1 text-sm md:text-base">
                         {discountPercentage}% OFF
                       </span>
                     </>
@@ -384,7 +384,7 @@ const Page = ({ params }: PageProps) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col gap-4 my-8">
+                <div className="flex flex-col gap-4 my-8 md:my-16">
                   <button
                     className="w-full bg-[#28a57f] text-white py-3 px-8 rounded-full font-semibold hover:bg-[#228a6f] transition-all duration-300 transform active:scale-95 hover:scale-[1.01]"
                     onClick={handleCheckout}

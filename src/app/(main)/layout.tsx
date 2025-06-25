@@ -1,4 +1,4 @@
-import Navbar from "@/components/Layout/Nav"
+import { LargeNavbar, SmallNavbar } from "@/components/Layout/Nav"
 
 export default function MainLayout({
   children,
@@ -7,7 +7,8 @@ export default function MainLayout({
 }) {
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <SmallNavbar />
+      <LargeNavbar />
       <main className="container">
         {children}
       </main>
