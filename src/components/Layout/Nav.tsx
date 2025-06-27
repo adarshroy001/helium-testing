@@ -47,17 +47,20 @@ export const LargeNavbar = () => {
     <header
       className={cn(
         "fixed top-4 left-4 right-4 z-50 ease-in-out",
-        "sm:transition-all sm:duration-300", // Smooth transitions only on desktop
-        "transition-transform duration-500", // Smoother animation for mobile
-        isVisible ? "translate-y-0" : "-translate-y-[80px]"
+        "sm:transition-all sm:duration-300",
+        "transition-transform duration-500", 
+        isVisible ? "translate-y-0" : "-translate-y-[80px]",
+        'hidden sm:block'
       )}
     >
       <div className="bg-[#e2e8e6]/30 backdrop-blur-lg rounded-md shadow-2xl max-w-4xl mx-auto">
-        <div className="px-6 lg:px-8 py-3 sm:py-4 hidden md:block">
+        <div className="px-6 lg:px-8 sm:py-3 md:py-3"
+        
+        >
           <nav className="flex items-center justify-between space-x-0 sm:space-x-8">
             <Logo />
-            <Link href="/why-helium" className='text-xl'>Why Helium</Link>
-            <Link href="/shop" className='bg-[#f5b841] py-1.5 px-5 text-xl rounded-4xl text-[#1e2a28]'>Shop</Link>
+            <Link href="/why-helium" className='text-xl sm:lext-lg text-xl'>Why Helium</Link>
+            <Link href="/shop" className='bg-[#f5b841] py-1.5 px-5 text-xl sm:text-lg md:text-xl rounded-4xl text-[#1e2a28]'>Shop</Link>
           </nav>
         </div>
       </div>
@@ -108,11 +111,12 @@ export const SmallNavbar = () => {
         "fixed top-4 left-4 right-4 z-50 ease-in-out",
         "sm:transition-all sm:duration-300", // Smooth transitions only on desktop
         "transition-transform duration-500", // Smoother animation for mobile
-        isVisible ? "translate-y-0" : "-translate-y-[80px]"
+        isVisible ? "translate-y-0" : "-translate-y-[80px]",
+        'block sm:hidden '
       )}
     >
       <div className="bg-[#e2e8e6]/30 backdrop-blur-lg rounded-md shadow-2xl max-w-4xl mx-auto">
-        <div className="block sm:hidden px-6 lg:px-8 py-3">
+        <div className="px-6 lg:px-8 py-3">
           <nav className="flex items-center justify-between space-x-0 sm:space-x-8">
             <Logo />
             <div className='gap-3.5 flex justify-center items-center'>

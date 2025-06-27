@@ -243,15 +243,15 @@ export default function WhyHeliumPage() {
 
     return (
         
-        <div className="overflow-hidden scroll-smooth ">
+        <div className="overflow-hidden min-w-full scroll-smooth">
             {/* Hero Section */}
             <section
                 id="hero"
                 data-animate
-                className="relative min-h-[97vh] md:min-h-screen flex items-center justify-center bg-[#033129] transition-all duration-1000"
+                className="min-h-screen flex items-center justify-center bg-[#033129] transition-all duration-1000 overflow-hidden"
             >
-                <div className="text-white text-center transition-all duration-[2000ms] ease-out">
-                    <blockquote className="text-4xl mx-2 mt-10 md:mt-20 md:mx-6 sm:text-[clamp(1.5rem,8vw,3rem)] md:text-5xl lg:text-8xl leading-loose md:leading-32 mb-4 md:mb-8 font-[Georgia,'Times New Roman',serif] min-h-[200px] md:min-h-[300px]">
+                <div className="text-white text-center transition-all duration-[2000ms] ease-out mx-2 sm:mx-4  md:mx-6">
+                    <blockquote className="text-4xl  mt-2 md:mt-20 sm:text-[clamp(1.5rem,8vw,3rem)] md:text-5xl lg:text-8xl leading-loose md:leading-32 mb-4 md:mb-8 font-[Georgia,'Times New Roman',serif] min-h-[200px] md:min-h-[300px]">
                         <span className="relative">
                             "{displayedText}"{isAnimating && <span className="animate-pulse text-[#f5b841] ml-1">|</span>}
                         </span>

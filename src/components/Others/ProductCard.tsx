@@ -15,7 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
 
     return (
         <div
-            className="group relative bg-[#1f1f1f] rounded-2xl md:rounded-3xl max-w-[300px] overflow-hidden transition-all duration-500 hover:transform  cursor-pointer"
+            className="group relative mx-1 sm:mx-2 md:mx-auto lg:mx-3 xl:mx-auto my-2 sm:my-3 bg-[#1f1f1f] rounded-xl md:rounded-3xl max-w-[340px] overflow-hidden transition-all duration-500 hover:transform  cursor-pointer"
             onClick={() => {
                 setSelectedProduct(product);
                 setSelectedColor(0);
@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
             }}
         >
             {/* Product Image */}
-            <div className="relative h-48 sm:h-64 overflow-hidden rounded-t-2xl md:rounded-t-3xl">
+            <div className="relative h-48 sm:h-64 overflow-hidden rounded-t-xl md:rounded-t-3xl">
                 <div
                     className="w-full h-full flex items-center justify-center text-white font-bold text-2xl"
                     style={{
@@ -60,11 +60,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
             </div>
 
             {/* Product Info */}
-            <div className="px-2 py-2 lg:px-6 lg:py-3 h-24 font-Metropolis">
-                <h3 className="text-sm lg:text-lg font-medium text-white mb-0 lg:mb-1">{product.name}</h3>
+            <div className="px-2 py-2 sm:px-3 md:px-4 lg:px-6 lg:py-2.5  font-Metropolis">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-white mb-0 lg:mb-1 truncate w-full">{product.name}</h3>
 
                 {/* Star Rating */}
-                <div className="flex items-center gap-1 mb-0.5 lg:mb-1">
+                <div className="flex items-center gap-1 mb-0.5 lg:mb-1 truncate w-full">
                     {[...Array(5)].map((_, i) => (
                         <Star
                             key={i}
@@ -72,15 +72,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
                                 }`}
                         />
                     ))}
-                    <span className="text-gray-400 text-xs ml-1">({product.stars}.0)</span>
+                    {/* <span className="text-gray-400 text-xs ml-1">({product.stars}.0)</span> */}
                 </div>
 
                 {/* Tonnage */}
-                <div className="text-gray-300 text-xs lg:text-sm mb-1">{product.tonnage} • Inverter AC</div>
+                <div className="text-gray-300 text-xs sm:text-sm md:text-base lg:text-base mb-0.5 lg:mb-1 truncate w-full">{product.tonnage} • {product.stars} Star </div>
 
                 {/* Price */}
-                <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm lg:text-xl font-semibold text-white">{product.price}</span>
+                <div className="flex items-center gap-2 truncate w-full">
+                    <span className="text-sm sm:text-base lg:text-lg font-semibold  text-white">{product.price}</span>
                     {product.originalPrice && (
                         <span className="text-gray-500 line-through text-xs lg:text-sm">{product.originalPrice}</span>
                     )}

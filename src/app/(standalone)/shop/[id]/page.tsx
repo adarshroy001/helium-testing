@@ -25,7 +25,7 @@ const Page = ({ params }: PageProps) => {
   // Handle async params in Next.js 15+
   useEffect(() => {
     let isMounted = true;
-    
+
     const getParams = async () => {
       try {
         const resolvedParams = await params;
@@ -46,7 +46,7 @@ const Page = ({ params }: PageProps) => {
     };
 
     getParams();
-    
+
     return () => {
       isMounted = false;
     };
@@ -85,8 +85,8 @@ const Page = ({ params }: PageProps) => {
     const originalPrice = extractPrice(product.originalPrice);
     const currentPrice = extractPrice(product.price);
     const calculatedDiscount = originalPrice - currentPrice;
-    
-    const calculatedDiscountPercentage = originalPrice > 0 
+
+    const calculatedDiscountPercentage = originalPrice > 0
       ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
       : 0;
 
@@ -120,7 +120,7 @@ const Page = ({ params }: PageProps) => {
   // Render star rating - memoized component
   const StarRating = useMemo(() => {
     if (!product?.stars) return null;
-    
+
     return (
       <div className="flex items-center mb-1 md:mb-4">
         <span className="text-gray-300 text-sm md:text-lg mr-1 md:mr-2">Review: </span>
@@ -140,14 +140,13 @@ const Page = ({ params }: PageProps) => {
     if (!product?.colors || product.colors.length === 0) return null;
 
     return (
-      <div className="flex gap-3 justify-center md:flex-col md:justify-center md:items-center">
+      <div className="flex gap-3 justify-center xl:flex-col xl:justify-center xl:items-center">
         {product.colors.map((color, index) => (
           <button
             key={index}
             onClick={() => setSelectedColor(index)}
-            className={`w-7 h-7 md:w-10 md:h-10 rounded-full border transition-all ${
-              selectedColor === index ? 'border-white scale-110' : 'border-gray-600'
-            }`}
+            className={`w-7 h-7 md:w-10 md:h-10 rounded-full border transition-all ${selectedColor === index ? 'border-white scale-110' : 'border-gray-600'
+              }`}
             style={{ backgroundColor: color }}
             aria-label={`Select color ${color}`}
           />
@@ -158,7 +157,7 @@ const Page = ({ params }: PageProps) => {
 
   // Features section - memoized
   const Features = useMemo(() => (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-3 gap-2 w-full h-full">
       <div className="flex flex-col items-center text-center">
         <div className='p-3 mb-2 bg-[#ffffff14] border border-[#9C9C9C] rounded-full'>
           <Wrench className="w-6 h-6 text-white" />
@@ -183,9 +182,9 @@ const Page = ({ params }: PageProps) => {
   // Product badges - memoized
   const ProductBadges = useMemo(() => {
     if (!product) return null;
-    
+
     const badges = [];
-    
+
     if (product.isNew) {
       badges.push(
         <div key="new" className="absolute top-4 left-4 px-3 py-1 bg-[#28a57f] text-white text-xs font-bold rounded-full">
@@ -193,7 +192,7 @@ const Page = ({ params }: PageProps) => {
         </div>
       );
     }
-    
+
     if (product.isBestseller) {
       badges.push(
         <div key="bestseller" className="absolute top-4 left-4 px-3 py-1 bg-[#28a57f] text-white text-xs font-bold rounded-full">
@@ -201,7 +200,7 @@ const Page = ({ params }: PageProps) => {
         </div>
       );
     }
-    
+
     if (product.isPremium) {
       badges.push(
         <div key="premium" className="absolute top-4 left-4 px-3 py-1 bg-[#28a57f] text-white text-xs font-bold rounded-full">
@@ -209,7 +208,7 @@ const Page = ({ params }: PageProps) => {
         </div>
       );
     }
-    
+
     return badges;
   }, [product?.isNew, product?.isBestseller, product?.isPremium]);
 
@@ -244,13 +243,13 @@ const Page = ({ params }: PageProps) => {
 
   return (
     <div className="bg-black text-white min-h-screen overflow-hidden ">
-      {/* Smaller + Medium Screen */}
-      <div className="relative block lg:hidden z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-6">
-        <div className="flex flex-col lg:flex-row gap-4">
+      {/* Smaller + lg Screen */}
+      <div className="relative block xl:hidden max-w-4xl z-10  mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-6 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-6">
+        <div className="flex flex-col xl:flex-row gap-4">
           {/* Left Side - Product Images */}
-          <div className="md:w-1/2 rounded-2xl md:rounded-3xl">
+          <div className="rounded-2xl md:rounded-3xl">
             {/* Main Product Image */}
-            <div className="relative h-96 sm:h-64 overflow-hidden rounded-2xl md:rounded-3xl">
+            <div className="relative h-96 sm:h-[420px] md:h-[450px] lg:h-[480px] xl:h-64 overflow-hidden rounded-2xl md:rounded-3xl">
               <div
                 className="w-full h-full flex items-center justify-center text-white font-bold text-2xl"
                 style={{
@@ -276,7 +275,7 @@ const Page = ({ params }: PageProps) => {
           {ColorSelection}
 
           {/* Right Side - Product Details */}
-          <div className="md:w-1/2 bg-[#1f1f1f] rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 pb-3 px-4">
+          <div className="bg-[#1f1f1f] rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 pb-3 px-4 sm:px-6 md:px-10 lg:px-12">
             <div className="mb-6">
               <h1 className="text-lg md:text-xl font-medium text-white mb-1">{product.name}</h1>
 
@@ -319,7 +318,7 @@ const Page = ({ params }: PageProps) => {
                 </button>
               </div>
               <div className="w-full h-px mx-auto my-4 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-              
+
               {/* Features */}
               {Features}
             </div>
@@ -327,8 +326,8 @@ const Page = ({ params }: PageProps) => {
         </div>
       </div>
 
-      {/* Larger Screen */}
-      <div className="h-full hidden lg:block w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-24">
+      {/* extra Larger Screen */}
+      <div className="h-full hidden xl:block w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-24">
         {/* Bg Image */}
         <div className="w-full h-full rounded-3xl flex"
           style={{
@@ -341,9 +340,9 @@ const Page = ({ params }: PageProps) => {
           <div className="w-[10%] min-h-[86vh] flex flex-col justify-center">
             {ColorSelection}
           </div>
-          
+
           {/* image-div */}
-          <div className="w-[45%] min-h-[86vh] flex flex-col justify-center">
+          <div className="w-[45%] min-h-[86%] flex flex-col justify-center">
             {/* Main Product Image */}
             <div className="h-96 overflow-hidden">
               <img
@@ -355,11 +354,11 @@ const Page = ({ params }: PageProps) => {
               />
             </div>
           </div>
-          
+
           {/* Right Side - Product Details */}
-          <div className="w-[45%] min-h-[86vh] flex justify-center items-center">
-            <div className="h-[85%] w-[80%] bg-[#1f1f1f]/60 rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 pb-4 px-4">
-              <div className="mb-6">
+          <div className="w-[45%]  min-h-[86%] flex justify-center items-center overflow-hidden">
+            <div className="h-fit max-h-[80%] w-[80%] overflow-hidden bg-[#1f1f1f]/60 rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 px-4">
+              <div className="">
                 <h1 className="text-lg md:text-3xl font-medium text-white mb-3">{product.name}</h1>
 
                 {/* Tonnage */}
@@ -384,7 +383,7 @@ const Page = ({ params }: PageProps) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col gap-4 my-8 md:my-16">
+                <div className="flex flex-col gap-4 my-8">
                   <button
                     className="w-full bg-[#28a57f] text-white py-3 px-8 rounded-full font-semibold hover:bg-[#228a6f] transition-all duration-300 transform active:scale-95 hover:scale-[1.01]"
                     onClick={handleCheckout}
@@ -401,9 +400,11 @@ const Page = ({ params }: PageProps) => {
                   </button>
                 </div>
                 <div className="w-full h-[2px] mx-auto my-4 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-                
+
                 {/* Features */}
-                {Features}
+                <div className='min-h-[200px] w-full mb-6'> 
+                  {Features}
+                </div>
               </div>
             </div>
           </div>

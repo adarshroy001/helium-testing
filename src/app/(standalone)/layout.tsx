@@ -1,16 +1,16 @@
-import { LargeNavbar } from "@/components/Layout/Nav"
+import { LargeNavbar, SmallNavbar } from "@/components/Layout/Nav"
 
-export default function PublicLayout({
-  children,
+export default function MainLayout({
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  return (
-    <div className="min-h-screen">
-            <LargeNavbar />
-      <div className="container">
-        {children}
-      </div>
-    </div>
-  )
+    return (
+        <div className="w-full max-w-full overflow-x-hidden scroll-smooth">
+            <main className="w-full">
+                <LargeNavbar />
+                {children}
+            </main>
+        </div>
+    )
 }

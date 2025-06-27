@@ -272,7 +272,7 @@ const initStackedPinning = () => {
                     </span>
                   </div> */}
 
-                  <h2 className="text-2xl sm:text-4xl font-bold mb-2 mt-4 tracking-tight text-white">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white">
                     {panel.title}
                   </h2>
 
@@ -288,7 +288,7 @@ const initStackedPinning = () => {
 
               {/* Image Section at Bottom */}
               <div
-                className="h-full sm:h-80 rounded-b-2xl bg-cover bg-center bg-no-repeat"
+                className="h-full rounded-b-2xl bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url(${panel.imageUrl})`
                 }}

@@ -1,17 +1,17 @@
 import { LargeNavbar, SmallNavbar } from "@/components/Layout/Nav"
 
 export default function MainLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  return (
-    <div className="min-h-screen">
-      <SmallNavbar />
-      <LargeNavbar />
-      <main className="container">
-        {children}
-      </main>
-    </div>
-  )
+    return (
+        <div className="w-full max-w-full overflow-x-hidden scroll-smooth">
+            <main className="w-full">
+                <SmallNavbar />
+                <LargeNavbar />
+                {children}
+            </main>
+        </div>
+    )
 }

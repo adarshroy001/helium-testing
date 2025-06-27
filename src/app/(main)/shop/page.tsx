@@ -50,27 +50,19 @@ const HeliumShop: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#101010] text-white pt-20 pb-20">
-      {/* Background Pattern */}
-      {/* <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-          backgroundSize: '50px 50px'
-        }}></div>
-      </div> */}
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 py-12">
         {/* Header Section */}
         <div className="text-center mb-8 md:mb-16">
-          <h1 className="text-3xl md:text-7xl font-bold bg-white bg-clip-text text-transparent mb-2 md:mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-white bg-clip-text text-transparent mb-2 md:mb-4">
             Choose your Helium
           </h1>
-          <p className="text-md md:text-xl text-gray-300 max-w-2xl mx-auto ">
+          <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto ">
             Experience the future of cooling with our next-generation smart air conditioners
           </p>
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap gap-4 mb-12 p-6 bg-gray-900/30 backdrop-blur-md rounded-2xl border border-gray-700/30 relative z-20">
+        <div className="flex flex-wrap gap-4 mx-2 mb-12 p-6 bg-gray-900/30 backdrop-blur-md rounded-2xl border border-gray-700/30 relative z-20">
           <FilterDropdown
             label="Tonnage"
             value={tonnageFilter}
@@ -99,7 +91,7 @@ const HeliumShop: React.FC = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-5 sm:gap-8 ">
+        <div className="w-full !px-auto  grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
             <ProductCard 
               key={product.id} 
