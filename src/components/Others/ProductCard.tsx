@@ -15,7 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
 
     return (
         <div
-            className="group relative mx-1 sm:mx-2 md:mx-auto lg:mx-3 xl:mx-auto my-2 sm:my-3 bg-[#1f1f1f] rounded-xl md:rounded-3xl max-w-[340px] overflow-hidden transition-all duration-500 hover:transform  cursor-pointer"
+            className="group relative mx-1.5 sm:mx-2 md:mx-auto lg:mx-3 xl:mx-auto my-2 sm:my-3 lg:my-6 bg-[#1f1f1f] rounded-xl md:rounded-3xl max-w-[340px] overflow-hidden transition-all duration-500 hover:transform  cursor-pointer"
             onClick={() => {
                 setSelectedProduct(product);
                 setSelectedColor(0);

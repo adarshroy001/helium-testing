@@ -1,9 +1,10 @@
 'use client'
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ArrowLeft, Bell, ChevronLeft, ChevronRight, FileText, MessageCircle, RotateCcw, Shield, Star, Wrench } from 'lucide-react';
+import { ArrowLeft, Bell, ChevronLeft, ChevronRight, FileText, MessageCircle, Minus, Plus, RotateCcw, Shield, Star, Wrench } from 'lucide-react';
 import type { Product } from '@/types/types';
 import { products } from '@/mockdata/products';
+import { Button } from '@/components/ui/button';
 
 interface PageProps {
   params: Promise<{
@@ -17,10 +18,10 @@ const Page = ({ params }: PageProps) => {
   const [selectedColor, setSelectedColor] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [pincode, setPincode] = useState<string>('');
-  const [quantity, setQuantity] = useState<number>(1);
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [quantity, setQuantity] = useState<number>(1)
 
   // Handle async params in Next.js 15+
   useEffect(() => {
@@ -111,6 +112,10 @@ const Page = ({ params }: PageProps) => {
     }
   }, [router, productId, quantity, product]);
 
+  // Handle quantity changes
+  const handleQuantityChange = useCallback((change: number) => {
+    setQuantity(prev => Math.max(1, prev + change));
+  }, []);
   // Error handling for image loading
   const handleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement;
@@ -300,6 +305,27 @@ const Page = ({ params }: PageProps) => {
                 )}
               </div>
 
+              <div className="flex items-center gap-2 mt-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 md:h-10 md:w-10 bg-[#2a2a2a] rounded-full active:scale-90"
+                  onClick={() => handleQuantityChange(-1)}
+                  disabled={quantity <= 1}
+                >
+                  <Minus className="h-4 w-4 md:h-6 md:w-6" />
+                </Button>
+                <span className="text-base sm:text-lg min-w-[2rem] text-center">{quantity}</span>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 md:h-10 md:w-10 bg-[#2a2a2a] rounded-full active:scale-90"
+                  onClick={() => handleQuantityChange(1)}
+                >
+                  <Plus className="h-4 w-4 md:h-6 md:w-6" />
+                </Button>
+              </div>
+
               {/* Action Buttons */}
               <div className="flex flex-col gap-4 my-8">
                 <button
@@ -381,6 +407,26 @@ const Page = ({ params }: PageProps) => {
                     </>
                   )}
                 </div>
+                <div className="flex items-center gap-2 mt-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 md:h-10 md:w-10 bg-[#2a2a2a] rounded-full active:scale-90"
+                    onClick={() => handleQuantityChange(-1)}
+                    disabled={quantity <= 1}
+                  >
+                    <Minus className="h-4 w-4 md:h-6 md:w-6" />
+                  </Button>
+                  <span className="text-base sm:text-lg min-w-[2rem] text-center">{quantity}</span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 md:h-10 md:w-10 bg-[#2a2a2a] rounded-full active:scale-90"
+                    onClick={() => handleQuantityChange(1)}
+                  >
+                    <Plus className="h-4 w-4 md:h-6 md:w-6" />
+                  </Button>
+                </div>
 
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-4 my-8">
@@ -402,7 +448,7 @@ const Page = ({ params }: PageProps) => {
                 <div className="w-full h-[2px] mx-auto my-4 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
                 {/* Features */}
-                <div className='min-h-[200px] w-full mb-6'> 
+                <div className='min-h-[200px] w-full mb-6'>
                   {Features}
                 </div>
               </div>
