@@ -32,6 +32,7 @@ const HeroSection = () => {
           muted
           loop
           playsInline
+          preload="auto"
         >
           <source
             src="/assets/hero-3.mp4"
@@ -50,6 +51,7 @@ const HeroSection = () => {
           muted
           loop
           playsInline
+          preload="auto"
         >
           <source
             src="/assets/hero-3.mp4"
