@@ -1,6 +1,6 @@
 import type { Product} from '../types/types';
 
-   export const products: Product[] = [
+   export const products: any[] = [
     {
       id: '1',
       name: 'The Breeze',
