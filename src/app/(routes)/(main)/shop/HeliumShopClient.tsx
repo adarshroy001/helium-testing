@@ -8,7 +8,7 @@ import { getAvailableTonnages, getAvailableStars } from '@/lib/productTransforme
 
 interface HeliumShopClientProps {
   initialProducts: Product[];
-  searchParams: { [key: string]: string | string[] | undefined };
+   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 const HeliumShopClient: React.FC<HeliumShopClientProps> = ({ 

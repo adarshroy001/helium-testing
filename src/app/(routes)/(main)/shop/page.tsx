@@ -3,6 +3,11 @@ import HeliumShopClient from './HeliumShopClient';
 import { BackendProduct } from '@/types/types';
 import { transformBackendProducts } from '@/lib/productTransformer';
 
+interface ShopPageProps {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+
 // Loading component
 function ShopLoading() {
   return (
@@ -21,11 +26,7 @@ function ShopLoading() {
   );
 }
 
-export default async function ShopPage({
-  searchParams
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
+export default async function ShopPage({ searchParams }: ShopPageProps) {
   try {
     // Fetch products from your backend API
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/products`, {
