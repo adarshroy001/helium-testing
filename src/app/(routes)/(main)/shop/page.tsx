@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import HeliumShopClient from './HeliumShopClient';
 import { BackendProduct } from '@/types/types';
 import { transformBackendProducts } from '@/lib/productTransformer';
+const baseUrl = process.env.INTERNAL_API_URL || 'http://localhost:3000';
 
 interface ShopPageProps {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -31,10 +32,11 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     const resolvedSearchParams = await searchParams;
     
     // Fetch products from your backend API
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/products`, {
+    const res = await fetch(`${baseUrl}/api/products`, {
       cache: 'no-store', // This ensures SSR behavior
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.INTERNAL_API_KEY}`, // Optional
       },
     });
 

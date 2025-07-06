@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import ProductDetailClient from './ProductDetailClient';
 import { BackendProduct } from '@/types/types';
 import { transformSingleProduct } from '@/lib/productDetailTransformer';
+const baseUrl = process.env.INTERNAL_API_URL || 'http://localhost:3000';
 
 // Loading component for the product detail page
 function ProductDetailLoading() {
@@ -28,10 +29,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
     const productId = resolvedParams.id;
 
     // Fetch the specific product from your backend API
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/products/${productId}`, {
+    const res = await fetch(`${baseUrl}/api/products/${productId}`, {
       cache: 'no-store', // This ensures SSR behavior
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.INTERNAL_API_KEY}`, // Optional
       },
     });
 
