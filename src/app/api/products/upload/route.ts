@@ -1,3 +1,4 @@
+// api/products/upload/routes.ts
 import { NextResponse } from 'next/server';
 import cloudinary from '@/lib/cloudinary';
 import { writeFile } from 'fs/promises';
@@ -39,14 +40,20 @@ export async function POST(req: Request) {
             for (const file of images) {
                 const bytes = await file.arrayBuffer();
                 const buffer = Buffer.from(bytes);
-                const tmpFilename = `${uuidv4()}.webp`;
+                const ext = file.name.split('.').pop() || 'png'; // fall back to png
+                const tmpFilename = `${uuidv4()}.${ext}`;
                 const tmpPath = path.join(os.tmpdir(), tmpFilename);
 
                 await writeFile(tmpPath, buffer);
 
                 const uploadRes = await cloudinary.uploader.upload(tmpPath, {
                     folder: 'helium-products',
+                    format: 'png', // force PNG to preserve transparency
+                    transformation: [
+                        { flags: 'preserve_transparency' }
+                    ]
                 });
+
 
                 imageUrls.push(uploadRes.secure_url);
             }

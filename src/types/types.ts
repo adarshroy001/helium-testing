@@ -1,3 +1,35 @@
+// Backend types (matching your API)
+export interface BackendStar {
+  star: number;
+  MRP: number;
+  sellingPrice: number;
+  stock: number;
+  tag: 'Popular' | 'Most Selling' | 'Hot' | 'Crazy Deal' | 'Big Saving' | 'Premium';
+}
+
+export interface BackendTonnage {
+  ton: number;
+  stars: BackendStar[];
+}
+
+export interface BackendColors {
+  colorName: string;
+  hex: string;
+  images: string[];
+  Ton: BackendTonnage[];
+}
+
+export interface BackendProduct {
+  _id: string;
+  name: string;
+  description: string;
+  inverter: boolean;
+  colors: BackendColors[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Frontend types (flattened for UI)
 export interface Product {
   id: string;
   name: string;
@@ -6,16 +38,16 @@ export interface Product {
   tonnage: string;
   stars: number;
   image: string;
-  colors: string[];
   isNew?: boolean;
   isBestseller?: boolean;
   isPremium?: boolean;
-  emi: string;
-  discount?: string;
-  features: string[];
-  specifications: {
-    [key: string]: string;
-  };
+  colors: string[];
+  colorName: string;
+  sellingPrice: number;
+  MRP: number;
+  stock: number;
+  tag: string;
+  backendId: string;
 }
 
 export interface FilterDropdownProps {
