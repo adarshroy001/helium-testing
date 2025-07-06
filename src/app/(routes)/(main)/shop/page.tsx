@@ -4,9 +4,8 @@ import { BackendProduct } from '@/types/types';
 import { transformBackendProducts } from '@/lib/productTransformer';
 
 interface ShopPageProps {
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
-
 
 // Loading component
 function ShopLoading() {
@@ -28,6 +27,9 @@ function ShopLoading() {
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   try {
+    // Await the searchParams promise
+    const resolvedSearchParams = await searchParams;
+    
     // Fetch products from your backend API
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/products`, {
       cache: 'no-store', // This ensures SSR behavior
@@ -50,7 +52,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
       <Suspense fallback={<ShopLoading />}>
         <HeliumShopClient 
           initialProducts={transformedProducts}
-          searchParams={searchParams}
+          searchParams={resolvedSearchParams}
         />
       </Suspense>
     );
