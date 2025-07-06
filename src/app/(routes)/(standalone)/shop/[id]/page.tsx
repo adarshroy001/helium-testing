@@ -113,3 +113,6 @@ export async function generateMetadata({ params }: PageProps) {
     description: 'Smart air conditioner details',
   };
 }
+
+
+//COMMENT TO CREATE PREVIEW DEPLOYMENT IN VERCEL
