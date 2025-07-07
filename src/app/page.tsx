@@ -6,6 +6,7 @@ import TestimonialSection from "@/components/Home/Testinomials";
 import WaitlistSection from "@/components/Home/WaitlistSection";
 import { LargeNavbar, SmallNavbar } from "@/components/Layout/Nav";
 
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden scroll-smooth">
