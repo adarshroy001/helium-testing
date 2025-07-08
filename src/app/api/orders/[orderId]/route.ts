@@ -5,7 +5,7 @@ import { getAuthenticatedUser } from '@/lib/auth-utils';
 
 export async function GET(
   req: Request,
-  { params }: { params: { orderId: string } }
+  context: { params: Promise<{ orderId: string }> }
 ) {
   try {
     // 1. Authenticate user
@@ -21,9 +21,12 @@ export async function GET(
     // 2. Connect to database
     await connectDB();
 
-    // 3. Get order (only if it belongs to the authenticated user)
+    // 3. Extract params (await the Promise in Next.js 15)
+    const { orderId } = await context.params;
+
+    // 4. Get order (only if it belongs to the authenticated user)
     const order = await OrderModel.findOne({
-      orderId: params.orderId,
+      orderId: orderId,
       userId: authenticatedUser.userId // 🔒 Ensure user owns this order
     });
 
