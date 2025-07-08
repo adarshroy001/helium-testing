@@ -12,6 +12,17 @@ import OTPVerification from "./OTPVerification"
 import DeliverySection from "./DeliverySection"
 import OrderSummary from "./OrderSummary"
 
+// Payment api call imports 
+import {
+  createOrder,
+  createRazorpayOptions,
+  openRazorpayCheckout,
+  validateRazorpayConfig,
+  handleApiError,
+  type OrderData,
+  type PaymentHandlerCallbacks
+} from '@/services/Payment';
+
 // Types
 interface ProductFromAPI {
   _id: string
@@ -103,14 +114,14 @@ function CheckoutContent() {
     try {
       setLoading(true)
       const response = await fetch(`/api/products/${id}`)
-      
+
       if (!response.ok) {
         throw new Error('Product not found')
       }
-      
+
       const productData: ProductFromAPI = await response.json()
       setProduct(productData)
-      
+
       if (urlQuantity) {
         const parsedQuantity = parseInt(urlQuantity, 10)
         if (parsedQuantity > 0) {
@@ -232,20 +243,20 @@ function CheckoutContent() {
   // Form validation
   const validateForm = useCallback(() => {
     const errors: FormErrors = {}
-    
+
     if (!formData.firstName) errors.firstName = 'First name is required'
     if (!formData.lastName) errors.lastName = 'Last name is required'
     if (!formData.address) errors.address = 'Address is required'
     if (!formData.city) errors.city = 'City is required'
     if (!formData.state) errors.state = 'State is required'
     if (!formData.phone) errors.phone = 'Phone number is required'
-    
+
     if (!formData.pincode) {
       errors.pincode = 'PIN code is required'
     } else if (!/^\d{6}$/.test(formData.pincode)) {
       errors.pincode = 'Please enter a valid 6-digit PIN code'
     }
-    
+
     return errors
   }, [formData])
 
@@ -255,7 +266,7 @@ function CheckoutContent() {
       ...prev,
       [field]: value
     }))
-    
+
     if (formErrors[field]) {
       setFormErrors(prev => ({
         ...prev,
@@ -281,7 +292,7 @@ function CheckoutContent() {
     }
 
     const discountAmount = discountCodes[discountCode.toUpperCase() as keyof typeof discountCodes]
-    
+
     if (discountAmount) {
       setAppliedDiscount(discountAmount)
       setDiscountCode('')
@@ -290,93 +301,130 @@ function CheckoutContent() {
     }
   }, [discountCode])
 
+
   // Handle Razorpay payment
   const handlePayment = useCallback(async () => {
-    if (!product || !selectedVariant || !isVerified) return
+    if (!product || !selectedVariant || !isVerified) return;
 
-    const errors = validateForm()
+    // Validate form
+    const errors = validateForm();
     if (Object.keys(errors).length > 0) {
-      setFormErrors(errors)
-      const firstErrorElement = document.querySelector('[data-error="true"]')
+      setFormErrors(errors);
+      const firstErrorElement = document.querySelector('[data-error="true"]');
       if (firstErrorElement) {
-        firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-      return
+      return;
     }
 
-    setIsProcessingPayment(true)
+    // Validate Razorpay configuration - ADD AWAIT HERE
+    if (!(await validateRazorpayConfig())) {
+      alert('Payment system configuration error. Please contact support.');
+      return;
+    }
+
+    setIsProcessingPayment(true);
 
     try {
-      // Calculate final price
-      const currentPrice = selectedVariant.sellingPrice
-      const basePrice = currentPrice * quantity
-      const appliedDiscountAmount = Math.round(basePrice * (appliedDiscount / 100))
-      const discountedPrice = basePrice - appliedDiscountAmount
-      const taxes = Math.round(discountedPrice * 0.18)
-      const finalPrice = discountedPrice + taxes
+      // Calculate pricing
+      const currentPrice = selectedVariant.sellingPrice;
+      const basePrice = currentPrice * quantity;
+      const appliedDiscountAmount = Math.round(basePrice * (appliedDiscount / 100));
+      const discountedPrice = basePrice - appliedDiscountAmount;
+      const taxes = Math.round(discountedPrice * 0.18);
+      const finalPrice = discountedPrice + taxes;
 
-      const orderData = {
+      // Prepare order data
+      const orderData: OrderData = {
         productId,
+        productName: product.name,
         quantity,
         selectedVariant,
-        customerInfo: { email, ...formData },
+        customerInfo: formData,
         totalAmount: finalPrice,
         appliedDiscount
-      }
+      };
 
-      // Create order in backend
-      const response = await fetch('/api/orders/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData)
-      })
+      console.log('Initiating payment process...');
 
-      const { razorpayOrderId, orderId } = await response.json()
+      // Create order
+      const orderResult = await createOrder(orderData);
 
-      // Initialize Razorpay
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        amount: finalPrice * 100,
-        currency: "INR",
-        name: "Helium",
-        description: `${product.name} - ${selectedVariant.tonnage} Ton`,
-        order_id: razorpayOrderId,
-        prefill: {
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: email,
-          contact: formData.phone
+      console.log('Order created:', orderResult.orderId, 'for user:', orderResult.user.email);
+
+      // Define payment callbacks
+      const paymentCallbacks: PaymentHandlerCallbacks = {
+        onSuccess: (orderId: string, paymentId: string, amount: number) => {
+          console.log('Payment completed successfully');
+
+          const confirmationParams = new URLSearchParams({
+            orderId,
+            paymentId,
+            amount: amount.toString(),
+            status: 'success'
+          });
+
+          router.push(`/order-confirmation?${confirmationParams.toString()}`);
         },
-        theme: {
-          color: "#f3942c"
-        },
-        handler: function(response: any) {
-          const orderParams = new URLSearchParams({
-            orderId: orderId,
-            paymentId: response.razorpay_payment_id,
-            amount: finalPrice.toString(),
-            product: product.name,
-            quantity: quantity.toString()
-          })
 
-          router.push(`/order-confirmation?${orderParams.toString()}`)
+        onError: (error: string) => {
+          setIsProcessingPayment(false);
+          alert(error);
         },
-        modal: {
-          ondismiss: function() {
-            setIsProcessingPayment(false)
-            console.log('Payment cancelled')
-          }
+
+        onDismiss: () => {
+          setIsProcessingPayment(false);
+          console.log('Payment cancelled by user');
+        },
+
+        onAuthError: () => {
+          setIsProcessingPayment(false);
+          alert('Your session has expired. Please verify your email again.');
+          setIsVerified(false);
+          setShowOTPField(false);
         }
+      };
+
+      // Create Razorpay options
+      const razorpayOptions = createRazorpayOptions(
+        orderResult,
+        formData.phone,
+        paymentCallbacks
+      );
+
+      // Open Razorpay checkout - ADD AWAIT HERE
+      await openRazorpayCheckout(razorpayOptions);
+
+    } catch (error) {
+      console.error('Payment initialization failed:', error);
+      setIsProcessingPayment(false);
+
+      const errorMessage = handleApiError(error);
+
+      if (errorMessage.includes('session has expired')) {
+        setIsVerified(false);
+        setShowOTPField(false);
       }
 
-      const razorpay = new (window as any).Razorpay(options)
-      razorpay.open()
-      
-    } catch (error) {
-      console.error('Payment failed:', error)
-      alert('Payment failed. Please try again.')
-      setIsProcessingPayment(false)
+      alert(errorMessage);
     }
-  }, [product, selectedVariant, isVerified, quantity, appliedDiscount, formData, email, validateForm, router, productId])
+  }, [
+    product,
+    selectedVariant,
+    isVerified,
+    quantity,
+    appliedDiscount,
+    formData,
+    validateForm,
+    router,
+    productId,
+    setFormErrors,
+    setIsProcessingPayment,
+    setIsVerified,
+    setShowOTPField
+  ]);
+
+
 
   // Loading state
   if (loading) {
