@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
                 <div
                     className="w-full h-full flex items-center justify-center text-white font-bold text-2xl"
                     style={{
-                        backgroundImage: 'url(https://t4.ftcdn.net/jpg/00/98/59/35/360_F_98593539_L3cNIqMZT511Qoz2DXe31xBAqMqPYdGj.jpg)',
+                        backgroundImage: 'url(https://res.cloudinary.com/dqhk6dblu/image/upload/v1752040346/bgCard_uwhvcx.jpg)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}

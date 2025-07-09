@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   return (
     <footer className=" text-gray-300 py-12 px-4 md:px-8 lg:px-12"
       style={{
-        backgroundImage: `url('/assets/bg/footersectionBg.jpg')`,
+        backgroundImage: `url('https://res.cloudinary.com/dqhk6dblu/image/upload/v1752040162/footersectionBg_nybemq.jpg')`,
         backgroundSize: 'cover',              // Makes sure the image covers the whole area
         backgroundPosition: 'top center',     // Keeps the spotlight area visible on mobile
         backgroundRepeat: 'no-repeat',        // Prevents tiling
@@ -35,12 +35,13 @@ const Footer: React.FC = () => {
             <div
               className="relative h-[400px] md:h-full w-full bg-cover bg-center rounded-lg overflow-hidden"
               style={{
-                backgroundImage: `url('/assets/bg/ManUAC.png')`,
+                backgroundImage: `url('https://res.cloudinary.com/dqhk6dblu/image/upload/v1752038613/ManUAC_aiteyz.png')`,
                 // backgroundPosition: "center",
               }}
             >
-              <div className="absolute inset-0 bg-black/30 flex flex-col justify-center p-6">
-                <h2 className="text-white text-3xl md:text-4xl font-light leading-tight">
+              <div className="absolute inset-0 bg-black/30  p-6 ">
+                <div className="h-1/2  mt-[50%] md:mt-[200%] lg:mt-[140%] xl:mt-[90%] flex flex-col ">
+                <h2 className="text-white text-3xl md:text-4xl font-light leading-tight  text-center">
                   Reimagine comfort
                   <br />
                   <span className="italic font-serif">with smarter cooling</span>
@@ -52,6 +53,7 @@ const Footer: React.FC = () => {
                   >
                     Explore
                   </Link>
+                </div>
                 </div>
               </div>
             </div>

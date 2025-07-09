@@ -26,7 +26,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Not just cool air — clean air.',
       description:
         'Save cost, space, and complexity with built-in purification. Perfect for health-conscious urban homes like Delhi NCR & Bengaluru.',
-      imageUrl: '/assets/bg/2.jpg'
+      imageUrl: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037892/2_jvcoiw.jpg'
     },
     {
       id: '2',
@@ -34,7 +34,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Helium ACs protect themselves.',
       description:
         'Detect gas leaks before they become breakdowns. No surprise service calls — just peace of mind.',
-      imageUrl: '/assets/bg/4.JPG'
+      imageUrl: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037893/4_uinp5o.jpg'
     },
     {
       id: '3',
@@ -42,7 +42,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Your AC, your style.',
       description:
         'Match your AC to your vibe. Make it yours with design-forward front panels — a first in the industry.',
-      imageUrl: '/assets/bg/3.png'
+      imageUrl: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037894/3_g5phkk.png'
     },
     {
       id: '4',
@@ -50,7 +50,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'The smartest AC you have ever owned.',
       description:
         'Control from anywhere, get smart alerts, and unlock advanced diagnostics — all from your phone.',
-      imageUrl: '/assets/bg/1.jpg'
+      imageUrl: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037892/1_udzmcb.jpg'
     },
     {
       id: '5',
@@ -58,7 +58,7 @@ const ImageStackedPinning: React.FC = () => {
       subtitle: 'Built for extremes. Ready for anything.',
       description:
         'Engineered for Indian summers. Delivers top performance even at 55°C — powerful and durable.',
-      imageUrl: '/assets/bg/5.jpg'
+      imageUrl: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037893/5_lfsvpq.jpg'
     }
 
   ];
@@ -194,15 +194,6 @@ const initStackedPinning = () => {
 
   return (
     <section className='w-full bg-[#0E0E10] pt-6 sm:pt-12'>
-      {/* <div className="text-center mb-16 mt-16 w-[90%] mx-auto">
-        <h2 className='text-white text-4xl sm:text-5xl font-bold tracking-tighter'>
-          Innovation at its
-          <span className="text-[#f3942c] border-b-2 border-[#f3942c]"> finest</span>
-        </h2>
-        <p className="text-white/70 text-lg mx-auto mt-4 w-[90%] tracking-tight">
-          Everyday moments, reimagined with smart, app-first cooling.
-        </p>
-      </div> */}
       <Heading text="Innovation at its finest" highlight="finest" maindesign='pt-16' />
       <SubHeading text="Everyday moments, reimagined with smart, app-first cooling." design='' />
 
@@ -266,19 +257,10 @@ const initStackedPinning = () => {
               {/* Black Text Section at Top */}
               <div className="panel-content bg-[#121111] rounded-t-2xl h-[32%] p-4 sm:p-8">
                 <div className="text-center">
-                  {/* <div className="mb-4">
-                    <span className="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm text-white">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div> */}
 
                   <h2 className="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white">
                     {panel.title}
                   </h2>
-
-                  {/* <h3 className="text-lg sm:text-xl font-light mb-2 tracking-tighter text-blue-200">
-                    {panel.subtitle}
-                  </h3> */}
 
                   <p className="text-sm sm:text-lg tracking-tighter opacity-90 text-white/80">
                     {panel.description}

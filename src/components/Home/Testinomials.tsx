@@ -190,7 +190,7 @@ const TestimonialSection = () => {
   return (
     <section className="py-20 px-4 w-full"
       style={{
-        backgroundImage: `url('/assets/bg/b-bg1.jpg')`,
+        backgroundImage: `url('https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037893/b-bg1_lkiwk0.jpg')`,
         backgroundSize: 'cover',
         // backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

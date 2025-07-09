@@ -28,7 +28,7 @@ const BELIEFS_DATA = [
         icon: Shield,
         gradient: "from-green-600 to-emerald-600",
         bgColor: "bg-green-50",
-        image: "/assets/bg/2.jpg",
+        image: "https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037892/1_udzmcb.jpg",
     },
     {
         number: "03",
@@ -39,7 +39,7 @@ const BELIEFS_DATA = [
         icon: Palette,
         gradient: "from-purple-600 to-pink-600",
         bgColor: "bg-purple-50",
-        image: "/assets/bg/5.jpg",
+        image: "https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037893/5_lfsvpq.jpg",
     },
     {
         number: "04",
@@ -50,7 +50,7 @@ const BELIEFS_DATA = [
         icon: Zap,
         gradient: "from-amber-600 to-orange-600",
         bgColor: "bg-amber-50",
-        image: "/assets/bg/4.JPG",
+        image: "https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037893/4_uinp5o.jpg",
     },
     {
         number: "05",
@@ -61,7 +61,7 @@ const BELIEFS_DATA = [
         icon: Smartphone,
         gradient: "from-cyan-600 to-blue-600",
         bgColor: "bg-cyan-50",
-        image: "/assets/bg/3.png",
+        image: "https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037894/3_g5phkk.png",
     },
 ]
 

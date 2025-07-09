@@ -35,7 +35,8 @@ const HeroSection = () => {
           preload="auto"
         >
           <source
-            src="/assets/hero-3.mp4"
+            // src="/assets/hero-3.mp4"
+            src="https://res.cloudinary.com/dqhk6dblu/video/upload/v1752037197/hero-3_1_dtwdco.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.

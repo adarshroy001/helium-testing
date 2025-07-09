@@ -5,18 +5,18 @@ import Link from "next/link";
 const FloatingGallery = () => {
     // Placeholder images with different aspect ratios to mimic the reference
     const images = [
-        { id: 1, src: '/assets/ac/1.jpg', alt: 'AC 1' },
-        { id: 2, src: '/assets/ac/2.jpg', alt: 'AC 2' },
-        { id: 3, src: '/assets/ac/3.jpg', alt: 'AC 3' },
-        { id: 4, src: '/assets/ac/4.jpg', alt: 'AC 4' },
-        { id: 5, src: '/assets/ac/5.jpg', alt: 'AC 5' },
-        { id: 6, src: '/assets/ac/6.jpg', alt: 'AC 6' },
-        { id: 7, src: '/assets/ac/7.jpg', alt: 'AC 7' },
-        { id: 8, src: '/assets/ac/8.jpg', alt: 'AC 8' },
-        { id: 9, src: '/assets/ac/9.png', alt: 'AC 9' },
-        { id: 10, src: '/assets/ac/10.png', alt: 'AC 10' },
-        { id: 11, src: '/assets/ac/11.jpg', alt: 'AC 11' },
-        { id: 12, src: '/assets/ac/12.png', alt: 'AC 12' },
+        { id: 1, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037461/12_lfachu.png', alt: 'AC 1' },
+        { id: 2, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037460/10_wxxd5x.png', alt: 'AC 2' },
+        { id: 3, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037459/9_vpzjig.png', alt: 'AC 3' },
+        { id: 4, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037460/11_dfo9xx.jpg', alt: 'AC 4' },
+        { id: 5, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037449/8_grcrny.jpg', alt: 'AC 5' },
+        { id: 6, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037441/7_wkehpd.jpg', alt: 'AC 6' },
+        { id: 7, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037440/5_rv5xe9.jpg', alt: 'AC 7' },
+        { id: 8, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037440/6_zl9vmj.jpg', alt: 'AC 8' },
+        { id: 9, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037439/3_fcmbd0.jpg', alt: 'AC 9' },
+        { id: 10, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037438/4_b0sa7n.jpg', alt: 'AC 10' },
+        { id: 11, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037437/2_isp0n2.jpg', alt: 'AC 11' },
+        { id: 12, src: 'https://res.cloudinary.com/dqhk6dblu/image/upload/v1752037437/1_yizo49.jpg', alt: 'AC 12' },
     ];
 
     return (
