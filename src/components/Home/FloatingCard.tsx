@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import Link from "next/link";
 
 const FloatingGallery = () => {
@@ -21,7 +22,7 @@ const FloatingGallery = () => {
 
     return (
         <section className="bg-[#080808] text-white py-20 px-6 md:px-12 lg:px-20 w-full min-h-screen">
-            <div className="w-full md:w-[90%] lg:[w-80%] mx-auto flex flex-col lg:flex-row items-center gap-3 sm:gap-12">
+            <div className="w-full md:w-[90%]  mx-auto flex flex-col lg:flex-row items-center gap-3 sm:gap-12">
                 {/* Text Content */}
                 <div className="flex-1">
                     <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-6">
@@ -36,9 +37,11 @@ const FloatingGallery = () => {
                         <li>✓ Futuristic design & silent cooling</li>
                         <li>✓ Free delivery + installation</li>
                     </ul>
-                    <button className="bg-[#f5b841] hover:bg-[#f5b830] hidden lg:block text-black font-semibold py-3 px-6 rounded-2xl text-lg transition-all duration-300">
+                    <Link href={'/shop'} className="bg-[#f5b841] hover:bg-[#f5b830] hidden lg:block text-black font-semibold py-3 px-6 rounded-2xl text-lg transition-all duration-300 w-fit">
+                       <button>
                         Shop Now →
-                    </button>
+                       </button>
+                    </Link>
                 </div>
                 {/* Floating Image Grid Container */}
                 <div className="flex-1 w-full flex justify-center">
@@ -53,11 +56,12 @@ const FloatingGallery = () => {
                                         animationDelay: `${index * 0.2}s`,
                                     }}
                                 >
-                                    <div className="relative !min-h-12 !min-w-32 overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-gray-600 hover:ring-gray-500">
-                                        <img
+                                    <div className="relative !min-h-24 !min-w-32 overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-gray-600 hover:ring-gray-500">
+                                        <Image
+                                            fill
                                             src={image.src}
                                             alt={image.alt}
-                                            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 scale-110 sm:scale-100 "
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 scale-110 sm:scale-100 "
                                             loading="lazy"
                                         />
                                     </div>
@@ -71,7 +75,7 @@ const FloatingGallery = () => {
                     Shop Now
                 </Link>
 
-                <style jsx>{`
+            <style jsx>{`
             @keyframes float-up {
             0%, 100% {
                 transform: translateY(0px);

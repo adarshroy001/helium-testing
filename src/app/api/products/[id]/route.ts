@@ -1,3 +1,4 @@
+// app/api/products/[id]/route.ts
 import ProductModel from '@/models/Product';
 import { connectDB } from "@/lib/db";
 import { NextResponse } from 'next/server';
@@ -8,20 +9,22 @@ export async function GET(
 ) {
   try {
     await connectDB();
-    
-    // Await the params promise
     const { id } = await params;
     
-    const product = await ProductModel.findById(id);
+    const product = await ProductModel.findById(id).lean();
     
     if (!product) {
       return NextResponse.json(
-        { error: 'Product not found from this id' },
+        { error: 'Product not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(product);
+    return NextResponse.json(product, {
+      headers: {
+        'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400'
+      }
+    });
   } catch (err: any) {
     return NextResponse.json(
       { error: 'Failed to fetch product', details: err.message },

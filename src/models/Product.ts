@@ -1,3 +1,4 @@
+//api/models/product.ts
 import { Schema, model, models, Document } from 'mongoose';
 import { Product, Star, Tonnage, Colors } from '@/types/Product';
 

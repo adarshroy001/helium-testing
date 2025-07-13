@@ -24,9 +24,9 @@ export function transformBackendProducts(backendProducts: BackendProduct[]): Pro
             stock: starRating.stock,
             tag: starRating.tag,
             // Determine badges based on tag
-            isNew: starRating.tag === 'Hot',
-            isBestseller: starRating.tag === 'Most Selling' || starRating.tag === 'Popular',
-            isPremium: starRating.tag === 'Premium'
+            // isNew: starRating.tag === 'Hot',
+            // isBestseller: starRating.tag === 'Most Selling' || starRating.tag === 'Popular',
+            // isPremium: starRating.tag === 'Premium'
           };
 
           transformedProducts.push(flatProduct);

@@ -35,6 +35,7 @@ export interface Product {
   name: string;
   price: string;
   originalPrice?: string;
+  description?: string;
   tonnage: string;
   stars: number;
   image: string;

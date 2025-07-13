@@ -22,10 +22,10 @@ const HeroSection = () => {
   }, [])
 
   return (
-    <section className="relative w-full max-h-screen h-screen overflow-hidden bg-[#033129]">
+    <section className="relative w-full max-h-screen h-screen overflow-hidden">
       {/* Video Background - Desktop */}
       <div className="hidden md:block absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -35,17 +35,15 @@ const HeroSection = () => {
           preload="auto"
         >
           <source
-            // src="/assets/hero-3.mp4"
             src="https://res.cloudinary.com/dqhk6dblu/video/upload/v1752037197/hero-3_1_dtwdco.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
         </video>
       </div>
-
       {/* Video Background - Mobile */}
       <div className="block md:hidden absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -55,7 +53,7 @@ const HeroSection = () => {
           preload="auto"
         >
           <source
-            src="/assets/hero-3.mp4"
+            src="https://res.cloudinary.com/dqhk6dblu/video/upload/v1752037197/hero-3_1_dtwdco.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
@@ -70,6 +68,7 @@ const HeroSection = () => {
         </h1>
       </div>
       <div className="absolute bottom-24 sm:bottom-10 left-1/2 transform -translate-x-1/2 z-20">        
+      <Link href={'/shop'}  className='flex justify-center items-center'>
         <Button
           size="lg"
           className={cn(
@@ -77,11 +76,10 @@ const HeroSection = () => {
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}
         >
-          <Link href={'/shop'}  className='flex justify-center items-center'>
            <p>Shop Now</p>
           <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
         </Button>
+          </Link>
       </div>
     </section>
   )
