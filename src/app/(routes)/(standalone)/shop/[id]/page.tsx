@@ -3,18 +3,8 @@ import ProductDetailClient from './ProductDetailClient';
 import { BackendProduct } from '@/types/types';
 import { transformSingleProduct } from '@/lib/productDetailTransformer';
 const baseUrl = process.env.INTERNAL_API_URL || 'http://localhost:3000';
+import Loading from './loading';
 
-// Loading component for the product detail page
-function ProductDetailLoading() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-        <p>Loading product details...</p>
-      </div>
-    </div>
-  );
-}
 
 interface PageProps {
   params: Promise<{
@@ -63,7 +53,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
     const transformedProductVariants = transformSingleProduct(backendProduct);
     
     return (
-      <Suspense fallback={<ProductDetailLoading />}>
+      <Suspense fallback={<Loading />}>
         <ProductDetailClient 
           productVariants={transformedProductVariants}
           backendProduct={backendProduct}
