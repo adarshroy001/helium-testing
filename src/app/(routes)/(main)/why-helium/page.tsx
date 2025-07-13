@@ -158,7 +158,7 @@ const BeliefSection = ({ belief, index, isVisible }: {
                         </div>
                         <div className="mt-8 relative overflow-hidden rounded-2xl shadow-2xl group-hover:shadow-3xl transition-all duration-500">
                             <img
-                                src={belief.image || "/placeholder.svg"}
+                                src={belief.image}
                                 alt={`${belief.title} - ${belief.subtitle}`}
                                 className="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
                                 loading="lazy"
@@ -311,12 +311,6 @@ export default function WhyHeliumPage() {
                 className={`relative py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white text-center transition-all duration-1000 delay-200 ${
                     visibleSections.has("closing") ? "opacity-100 scale-100" : "opacity-0 scale-95"
                 }`}
-                style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('/placeholder.svg?height=800&width=1920&text=Premium+Comfort+Lifestyle+AC')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundAttachment: "fixed",
-                }}
             >
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto space-y-12">
