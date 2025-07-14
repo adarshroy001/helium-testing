@@ -7,9 +7,7 @@ import type { Product } from '@/types/types';
 // This data-fetching function uses fetch to enable caching.
 async function getProducts(): Promise<Product[]> {
   try {
-    // Ensure your environment variable is set in .env.local
-    // NEXT_PUBLIC_API_URL=http://localhost:3000
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/products`;
+    const apiUrl = `${process.env.INTERNAL_API_URL}/api/products`;
 
     // This fetch call will be cached.
     const res = await fetch(apiUrl, {
