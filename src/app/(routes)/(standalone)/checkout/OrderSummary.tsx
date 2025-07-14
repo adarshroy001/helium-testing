@@ -77,10 +77,10 @@ export default function OrderSummary({
     const originalTotal = originalPrice * quantity
     const discount = originalTotal - basePrice
     const discountPercentage = originalPrice > 0 ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100) : 0
-    
+
     const appliedDiscountAmount = Math.round(basePrice * (appliedDiscount / 100))
     const discountedPrice = basePrice - appliedDiscountAmount
-    
+
     const taxes = Math.round(discountedPrice * 0.18) // 18% GST
     const finalPrice = discountedPrice + taxes
 
@@ -120,16 +120,15 @@ export default function OrderSummary({
           </div>
           <div className="flex-1">
             <h3 className="font-medium">{product.name}</h3>
-            <p className="text-sm text-gray-400">{selectedVariant.tonnage} Ton</p>
-            <p className="text-sm text-gray-400">Color: {selectedVariant.color}</p>
             <p className="text-sm text-gray-400">
-              {selectedVariant.star} Star | {product.inverter ? 'Inverter' : 'Non-Inverter'}
+              {selectedVariant.tonnage} Ton | {selectedVariant.color} | {selectedVariant.star} Star | {product.inverter ? 'Inverter' : 'Non-Inverter'}
+              {selectedVariant.tag && (
+                <span className="inline-block mx-2 px-2 py-1 text-xs bg-[#f3942c] text-black rounded-full mt-1">
+                  { selectedVariant.tag}
+                </span>
+              )}
             </p>
-            {selectedVariant.tag && (
-              <span className="inline-block px-2 py-1 text-xs bg-[#f3942c] text-black rounded-full mt-1">
-                {selectedVariant.tag}
-              </span>
-            )}
+
             <div className="flex items-center gap-2 mt-2">
               <Button
                 variant="outline"
@@ -151,14 +150,6 @@ export default function OrderSummary({
                 <Plus className="h-3 w-3" />
               </Button>
             </div>
-          </div>
-          <div className="text-right">
-            <p className="font-medium">₹{pricing.productPrice.toLocaleString()}</p>
-            {pricing.originalPrice > pricing.productPrice && (
-              <p className="text-sm text-gray-500 line-through">
-                ₹{pricing.originalPrice.toLocaleString()}
-              </p>
-            )}
           </div>
         </div>
 

@@ -85,7 +85,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 export async function generateMetadata({ params }: PageProps) {
   try {
     const resolvedParams = await params;
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/products/${resolvedParams.id}`);
+    const res = await fetch(`${process.env.INTERNAL_API_URL}/api/products/${resolvedParams.id}`);
     
     if (res.ok) {
       const product: BackendProduct = await res.json();

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Bell, ChevronLeft, ChevronRight, FileText, MessageCircle, Minus, Plus, RotateCcw, Shield, Star, Wrench } from 'lucide-react';
 import { BackendProduct } from '@/types/types';
@@ -12,12 +12,13 @@ interface ProductDetailClientProps {
   productId: string;
 }
 
-const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ 
-  productVariants, 
-  backendProduct, 
-  productId 
+const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
+  productVariants,
+  backendProduct,
+  productId
 }) => {
   const router = useRouter();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
   const [selectedTonnageIndex, setSelectedTonnageIndex] = useState<number>(0);
   const [selectedStarIndex, setSelectedStarIndex] = useState<number>(0);
@@ -33,8 +34,7 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
   // Get available options for current selection
   const availableOptions = useMemo(() => {
     const currentColor = backendProduct.colors[selectedColorIndex];
-    const currentTonnage = currentColor?.Ton[selectedTonnageIndex];
-    
+
     return {
       colors: backendProduct.colors.map((color, index) => ({
         ...color,
@@ -45,27 +45,22 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
         ...tonnage,
         index,
         isAvailable: true
-      })) || [],
-      stars: currentTonnage?.stars.map((star, index) => ({
-        ...star,
-        index,
-        isAvailable: star.stock > 0
       })) || []
     };
-  }, [backendProduct, selectedColorIndex, selectedTonnageIndex]);
+  }, [backendProduct, selectedColorIndex]);
 
   // Handle color selection
   const handleColorChange = useCallback((colorIndex: number) => {
     setSelectedColorIndex(colorIndex);
-    setSelectedTonnageIndex(0); // Reset to first tonnage
-    setSelectedStarIndex(0); // Reset to first star
-    setCurrentImageIndex(0); // Reset image index
+    setSelectedTonnageIndex(0);
+    setSelectedStarIndex(0);
+    setCurrentImageIndex(0);
   }, []);
 
   // Handle tonnage selection
   const handleTonnageChange = useCallback((tonnageIndex: number) => {
     setSelectedTonnageIndex(tonnageIndex);
-    setSelectedStarIndex(0); // Reset to first star when tonnage changes
+    setSelectedStarIndex(0);
   }, []);
 
   // Handle star rating selection
@@ -160,7 +155,7 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
   // Color selection component
   const ColorSelection = useMemo(() => {
     return (
-      <div className="flex gap-3 justify-center xl:flex-col xl:justify-center xl:items-center">
+      <div className="flex gap-3 justify-center xl:justify-center xl:items-center">
         {availableOptions.colors.map((color, index) => (
           <button
             key={index}
@@ -175,47 +170,6 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
       </div>
     );
   }, [availableOptions.colors, selectedColorIndex, handleColorChange]);
-
-  // Tonnage and Star selection (you can add these as dropdowns)
-  const VariantSelectors = useMemo(() => {
-    if (availableOptions.tonnages.length <= 1 && availableOptions.stars.length <= 1) {
-      return null;
-    }
-
-    return (
-      <div className="flex gap-4 mb-4">
-        {/* Tonnage selector */}
-        {availableOptions.tonnages.length > 1 && (
-          <select
-            value={selectedTonnageIndex}
-            onChange={(e) => handleTonnageChange(parseInt(e.target.value))}
-            className="px-3 py-2 bg-gray-800 text-white rounded-lg border border-gray-600"
-          >
-            {availableOptions.tonnages.map((tonnage, index) => (
-              <option key={index} value={index}>
-                {tonnage.ton} Ton
-              </option>
-            ))}
-          </select>
-        )}
-
-        {/* Star rating selector */}
-        {availableOptions.stars.length > 1 && (
-          <select
-            value={selectedStarIndex}
-            onChange={(e) => handleStarChange(parseInt(e.target.value))}
-            className="px-3 py-2 bg-gray-800 text-white rounded-lg border border-gray-600"
-          >
-            {availableOptions.stars.map((star, index) => (
-              <option key={index} value={index} disabled={!star.isAvailable}>
-                {star.star} Star - ₹{star.sellingPrice.toLocaleString()} {!star.isAvailable && '(Out of Stock)'}
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
-    );
-  }, [availableOptions, selectedTonnageIndex, selectedStarIndex, handleTonnageChange, handleStarChange]);
 
   // Features section
   const Features = useMemo(() => (
@@ -323,13 +277,44 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
           {/* Color Selection */}
           {ColorSelection}
 
+          {/* Scrollable Options for Small Screens */}
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-3 min-w-max px-2">
+              {availableOptions.tonnages.map((tonnage) =>
+                tonnage.stars.map((star, starIndex) => { // Add starIndex here
+                  const isSelected = selectedTonnageIndex === tonnage.index && selectedStarIndex === starIndex;
+                  const isDisabled = star.stock <= 0;
+                  return (
+                    <button
+                      key={`${tonnage.index}-${starIndex}`} // Use starIndex
+                      onClick={() => {
+                        if (!isDisabled) {
+                          handleTonnageChange(tonnage.index);
+                          handleStarChange(starIndex); // Use starIndex
+                        }
+                      }}
+                      disabled={isDisabled}
+                      className={`flex flex-col items-center justify-center min-w-[110px] px-3 py-2 rounded-lg border transition-all duration-200 whitespace-nowrap ${isSelected ? 'border-[#28a57f] bg-[#28a57f]/20 text-white' : 'border-gray-600 text-gray-300'} ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-[#28a57f] hover:bg-[#28a57f]/10 cursor-pointer'}`}
+                    >
+                      <span className="font-semibold text-sm">
+                        {tonnage.ton} Ton | {star.star} Star
+                      </span>
+                      <span className="text-xs">
+                        ₹{star.sellingPrice.toLocaleString()}
+                      </span>
+                      {isDisabled && <span className="text-xs text-red-500">Out of Stock</span>}
+                    </button>
+                  );
+                })
+              )}
+            </div>
+          </div>
+
+
           {/* Right Side - Product Details */}
           <div className="bg-[#1f1f1f] rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 pb-3 px-4 sm:px-6 md:px-10 lg:px-12">
             <div className="mb-6">
               <h1 className="text-lg md:text-xl font-medium text-white mb-1">{currentVariant.name}</h1>
-
-              {/* Variant Selectors */}
-              {VariantSelectors}
 
               {/* Tonnage */}
               {currentVariant.tonnage && (
@@ -412,7 +397,7 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
         </div>
       </div>
 
-      {/* Extra Large Screen - Same structure with updated data */}
+      {/* Extra Large Screen */}
       <div className="h-full hidden xl:block w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-24">
         <div className="w-full h-full rounded-3xl flex"
           style={{
@@ -421,13 +406,8 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
             backgroundPosition: 'center',
           }}
         >
-          {/* Colors-div */}
-          <div className="w-[10%] min-h-[86vh] flex flex-col justify-center">
-            {ColorSelection}
-          </div>
-
           {/* image-div */}
-          <div className="w-[45%] min-h-[86%] flex flex-col justify-center">
+          <div className="w-[55%] min-h-[66%] flex flex-col justify-center">
             <div className="h-96 overflow-hidden">
               <img
                 src={currentVariant.image}
@@ -437,6 +417,65 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                 onError={handleImageError}
               />
             </div>
+            {/* Colors-div */}
+            <div className="flex justify-center mt-6">
+              {ColorSelection}
+            </div>
+
+            {/* New scrollable options div below colors-div */}
+            <div className="relative mt-4 w-4/5 mx-auto">
+              <button
+                onClick={() => scrollContainerRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-[#1f1f1f]/80 hover:bg-[#28a57f] text-white rounded-full p-2 transition-colors"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              {/* Large screen scrollable options */}
+              <div
+                ref={scrollContainerRef}
+                className="flex overflow-x-auto scrollbar-hide gap-4 px-12 py-2 scroll-smooth"
+                style={{ scrollBehavior: 'smooth' }}
+              >
+                {availableOptions.tonnages.map((tonnage) =>
+                  tonnage.stars.map((star, starIndex) => { // Add starIndex here
+                    const isSelected = selectedTonnageIndex === tonnage.index && selectedStarIndex === starIndex;
+                    const isDisabled = star.stock <= 0;
+                    return (
+                      <button
+                        key={`${tonnage.index}-${starIndex}`} // Use starIndex
+                        onClick={() => {
+                          if (!isDisabled) {
+                            handleTonnageChange(tonnage.index);
+                            handleStarChange(starIndex); // Use starIndex
+                          }
+                        }}
+                        disabled={isDisabled}
+                        className={`flex flex-col items-center justify-center min-w-[120px] px-4 py-2 rounded-lg border transition-all duration-200 whitespace-nowrap ${isSelected ? 'border-[#28a57f] bg-[#28a57f]/20 text-white' : 'border-gray-600 text-gray-300'} ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-[#28a57f] hover:bg-[#28a57f]/10 cursor-pointer'}`}
+                      >
+                        <span className="font-semibold text-base">
+                          {tonnage.ton} Ton | {star.star} Star
+                        </span>
+                        <span className="text-sm">
+                          ₹{star.sellingPrice.toLocaleString()}
+                        </span>
+                        {isDisabled && <span className="text-xs text-red-500">Out of Stock</span>}
+                      </button>
+                    );
+                  })
+                )}
+              </div>
+
+
+              <button
+                onClick={() => scrollContainerRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-[#1f1f1f]/80 hover:bg-[#28a57f] text-white rounded-full p-2 transition-colors"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
           </div>
 
           {/* Right Side - Product Details */}
@@ -444,9 +483,6 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
             <div className="h-fit max-h-[80%] w-[80%] overflow-hidden bg-[#1f1f1f]/60 rounded-2xl md:rounded-3xl border border-[rgba(255,255,255,0.15)] pt-6 px-4">
               <div className="">
                 <h1 className="text-lg md:text-3xl font-medium text-white mb-3">{currentVariant.name}</h1>
-
-                {/* Variant Selectors */}
-                {VariantSelectors}
 
                 {/* Tonnage */}
                 {currentVariant.tonnage && (

@@ -56,7 +56,7 @@ const FloatingGallery = () => {
                                         animationDelay: `${index * 0.2}s`,
                                     }}
                                 >
-                                    <div className="relative !min-h-24 !min-w-32 overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-gray-600 hover:ring-gray-500">
+                                    <div className="relative h-20 w-36 xl:h-20 xl:w-36  lg:h-16 lg:w-28 overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-gray-600 hover:ring-gray-500">
                                         <Image
                                             fill
                                             src={image.src}
